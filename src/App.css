@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  line-height: 1.6;
+  color: #ffffff;
+  background-color: #000000;
+  overflow-x: hidden;
+}
+
+.font-display {
+  font-family: 'Bebas Neue', cursive;
+  letter-spacing: 2px;
+}
+
+.font-heading {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #ff003c 0%, #b3001b 50%, #ff003c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, #000000 0%, #1a0000 50%, #000000 100%);
+}
+
+.animated-gradient {
+  background: linear-gradient(-45deg, #000000, #1a0000, #330000, #1a0000);
+  background-size: 400% 400%;
+  animation: gradientShift 8s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.typing-animation {
+  overflow: hidden;
+  border-right: 2px solid #ff003c;
+  white-space: nowrap;
+  animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: #ff003c; }
+}
+
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 0, 60, 0.1);
+}
+
+.card-hover:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 25px 50px -12px rgba(255, 0, 60, 0.3);
+  border-color: rgba(255, 0, 60, 0.5);
+}
+
+.red-glow {
+  box-shadow: 0 0 20px rgba(255, 0, 60, 0.3);
+}
+
+.red-glow:hover {
+  box-shadow: 0 0 30px rgba(255, 0, 60, 0.6);
+}
+
+.wobble {
+  animation: wobble 0.6s ease-in-out;
+}
+
+@keyframes wobble {
+  0%, 100% { transform: translateX(0%); }
+  15% { transform: translateX(-25px) rotate(-5deg); }
+  30% { transform: translateX(20px) rotate(3deg); }
+  45% { transform: translateX(-15px) rotate(-3deg); }
+  60% { transform: translateX(10px) rotate(2deg); }
+  75% { transform: translateX(-5px) rotate(-1deg); }
+}
+
+.parallax {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stagger-1 { transition-delay: 0.1s; }
+.stagger-2 { transition-delay: 0.2s; }
+.stagger-3 { transition-delay: 0.3s; }
+.stagger-4 { transition-delay: 0.4s; }
+.stagger-5 { transition-delay: 0.5s; }
+.stagger-6 { transition-delay: 0.6s; }
+
+.form-glow {
+  border: 1px solid rgba(255, 0, 60, 0.3);
+  box-shadow: 0 0 15px rgba(255, 0, 60, 0.1);
+  transition: all 0.3s ease;
+}
+
+.form-glow:focus {
+  border-color: #ff003c;
+  box-shadow: 0 0 25px rgba(255, 0, 60, 0.3);
+  outline: none;
+}
+
+.button-scale {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.button-scale:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(255, 0, 60, 0.4);
+}
+
+.button-scale:active {
+  transform: scale(0.98);
+}
+
+.text-shadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.red-border-glow {
+  border: 1px solid rgba(255, 0, 60, 0.2);
+  box-shadow: 0 0 20px rgba(255, 0, 60, 0.1);
+}
+
+.red-border-glow:hover {
+  border-color: rgba(255, 0, 60, 0.5);
+  box-shadow: 0 0 30px rgba(255, 0, 60, 0.2);
+}
+
+.fade-up {
+  animation: fadeUp 0.8s ease-out;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pulse-red {
+  animation: pulseRed 2s infinite;
+}
+
+@keyframes pulseRed {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(255, 0, 60, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 0, 60, 0.6);
+  }
+}
