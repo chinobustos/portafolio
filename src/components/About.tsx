@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, spring } from 'framer-motion';
 import { Code, Palette, Globe, GraduationCap, Briefcase, Languages } from 'lucide-react';
 
 const About = () => {
@@ -25,6 +25,13 @@ const About = () => {
 
   const technologies = [
     { name: 'HTML5', icon: Code, color: 'text-red-400' },
+    {name : 'Tailwind CSS', icon: Palette, color: 'text-red-600' },
+    {name : 'TypeScript', icon: Code, color: 'text-red-500' },
+    {name:'MySQL', icon: Globe, color: 'text-red-700' },
+    {name:'supabase', icon: Globe, color: 'text-red-600' },
+    {name: 'spring boot', icon: Code, color: 'text-red-800' },
+    {name:'sqlite', icon: Globe, color: 'text-red-500' },
+    {name : 'java', icon: Code, color: 'text-red-700' },
     { name: 'CSS3', icon: Palette, color: 'text-red-500' },
     { name: 'JavaScript', icon: Code, color: 'text-red-600' },
     { name: 'React', icon: Code, color: 'text-red-400' },
@@ -36,7 +43,7 @@ const About = () => {
     {
       icon: GraduationCap,
       title: 'Educación',
-      content: 'Ingeniería en Sistemas Computacionales\nUniversidad Tecnológica',
+      content: 'Lic. en Sistemas de Información\nUniversidad Champagnat',
       color: 'from-red-600 to-red-800'
     },
     {
@@ -48,7 +55,7 @@ const About = () => {
     {
       icon: Languages,
       title: 'Idiomas',
-      content: 'Español (Nativo)\nInglés (Avanzado)',
+      content: 'Español (Nativo)\nInglés (basico)',
       color: 'from-red-700 to-red-900'
     },
   ];

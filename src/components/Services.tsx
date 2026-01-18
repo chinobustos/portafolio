@@ -30,14 +30,14 @@ const Services = () => {
       title: 'Desarrollo Frontend',
       description: 'Creación de interfaces modernas y responsivas con las últimas tecnologías web.',
       gradient: 'from-red-600 to-red-800',
-      features: ['React/Vue.js', 'Responsive Design', 'Performance Optimization']
+      features: ['React/Vue.js', 'Responsive Design']
     },
     {
       icon: Palette,
       title: 'Diseño UI/UX',
       description: 'Diseño de experiencias digitales intuitivas y atractivas para tus usuarios.',
       gradient: 'from-red-500 to-red-700',
-      features: ['Figma/Adobe XD', 'Wireframing', 'Prototyping']
+      features: ['Figma']
     },
     {
       icon: Globe,
@@ -51,21 +51,21 @@ const Services = () => {
       title: 'Apps Móviles',
       description: 'Desarrollo de aplicaciones móviles nativas y híbridas multiplataforma.',
       gradient: 'from-red-800 to-black',
-      features: ['React Native', 'Flutter', 'PWA']
+      features: ['React Native', 'Java']
     },
     {
       icon: Zap,
       title: 'Optimización',
       description: 'Mejora del rendimiento y velocidad de carga de aplicaciones existentes.',
       gradient: 'from-red-600 to-black',
-      features: ['Code Splitting', 'Lazy Loading', 'Bundle Optimization']
+      features: ['Clean Code', 'Lazy Loading', 'Bundle Optimization']
     },
     {
       icon: Users,
-      title: 'Consultoría',
+      title: 'Metodologias agiles',
       description: 'Asesoramiento técnico y estratégico para proyectos de desarrollo web.',
       gradient: 'from-red-500 to-black',
-      features: ['Tech Stack Selection', 'Code Review', 'Architecture Planning']
+      features: ['Scrum', 'Kanban', 'Lean Software Development']
     },
   ];
 

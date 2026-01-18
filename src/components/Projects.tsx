@@ -55,8 +55,8 @@ const Projects = () => {
       gradient: 'from-red-700 to-red-900'
     },
     {
-      title: 'Dashboard Analytics',
-      description: 'Dashboard interactivo para análisis de datos',
+      title: 'Customer Relationship Management',
+      description: 'Dashboard interactivo para análisis de datos y gestion de clientes ',
       image: 'https://images.pexels.com/photos/590020/pexels-photo-590020.jpeg?auto=compress&cs=tinysrgb&w=600',
       technologies: ['React', 'D3.js', 'Chart.js'],
       liveUrl: '#',

@@ -38,7 +38,7 @@ const Hero = () => {
       opacity: 1,
       transition: {
         duration: 0.8,
-        ease: "easeOut"
+        ease: [0.22, 1, 0.36, 1]
       }
     }
   };
@@ -65,7 +65,7 @@ const Hero = () => {
             variants={itemVariants}
             className="text-2xl md:text-4xl lg:text-5xl font-light mb-4 text-gray-200 font-heading"
           >
-            FRONT-END DEVELOPER
+            FULL STACK DEVELOPER
           </motion.h2>
           
           <motion.p
@@ -90,7 +90,7 @@ const Hero = () => {
             className="flex justify-center space-x-6 mb-16"
           >
             <a
-              href="https://github.com"
+              href="https://github.com/chinobustos"
               target="_blank"
               rel="noopener noreferrer"
               className="p-4 rounded-full bg-black/70 hover:bg-red-600 transition-all duration-300 hover:scale-110 red-glow button-scale"
@@ -98,7 +98,7 @@ const Hero = () => {
               <Github size={28} />
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/ivan-bustos-8a468a284"
               target="_blank"
               rel="noopener noreferrer"
               className="p-4 rounded-full bg-black/70 hover:bg-red-600 transition-all duration-300 hover:scale-110 red-glow button-scale"
