@@ -98,7 +98,7 @@ const Hero = () => {
               <Github size={28} />
             </a>
             <a
-              href="https://www.linkedin.com/in/ivan-bustos-8a468a284"
+              href="https://www.linkedin.com/in/ivan-bustosdev"
               target="_blank"
               rel="noopener noreferrer"
               className="p-4 rounded-full bg-black/70 hover:bg-red-600 transition-all duration-300 hover:scale-110 red-glow button-scale"
