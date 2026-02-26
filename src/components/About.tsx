@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Code, Palette, Globe, GraduationCap, Briefcase, Languages } from 'lucide-react';
+import { Code, Palette, Globe, GraduationCap, Briefcase, Languages, Download } from 'lucide-react';
 
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -72,11 +72,21 @@ const About = () => {
           <h2 className="text-5xl md:text-6xl font-bold mb-6 gradient-text font-display">
             SOBRE MÍ
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
             Apasionado por crear experiencias digitales que combinan diseño elegante 
             con funcionalidad excepcional. Especializado en desarrollo front-end moderno 
             con enfoque en la experiencia del usuario.
           </p>
+          <motion.a
+            href="/Ivan_Bustos_CV.pdf"
+            download="Ivan_Bustos_CV.pdf"
+            whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(255, 0, 60, 0.4)" }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-red-600 to-red-800 text-white rounded-lg font-heading font-semibold hover:from-red-700 hover:to-red-900 transition-all duration-300 border border-red-500/50"
+          >
+            <Download size={20} />
+            DESCARGAR CV
+          </motion.a>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
