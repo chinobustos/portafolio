@@ -78,8 +78,8 @@ const About = () => {
             con enfoque en la experiencia del usuario.
           </p>
           <motion.a
-            href="/Ivan_Bustos_CV.pdf"
-            download="Ivan_Bustos_CV.pdf"
+            href="/Ivan-Bustos-CV.pdf"
+            download="Ivan-Bustos-CV.pdf"
             whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(255, 0, 60, 0.4)" }}
             whileTap={{ scale: 0.95 }}
             className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-red-600 to-red-800 text-white rounded-lg font-heading font-semibold hover:from-red-700 hover:to-red-900 transition-all duration-300 border border-red-500/50"
