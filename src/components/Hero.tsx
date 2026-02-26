@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Palette, ChevronDown } from 'lucide-react';
-// background image asset
+import { Github, Linkedin, ChevronDown } from 'lucide-react';
+// background image asset (project root /multimedia/back_hero.png)
 import backHero from '../multimedia/back_hero.png';
 
 const Hero = () => {
@@ -137,13 +137,13 @@ const Hero = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 2, duration: 0.8 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        className="absolute bottom-6 left-0 w-full flex justify-center px-4 md:left-1/2 md:w-auto md:px-0 md:transform md:-translate-x-1/2"
       >
         <a
           href="#about"
           className="flex flex-col items-center text-red-500 hover:text-red-400 transition-colors duration-300"
         >
-          <span className="text-sm mb-2 font-heading">EXPLORAR</span>
+          <span className="text-sm mb-1 md:mb-2 font-heading">EXPLORAR</span>
           <ChevronDown size={24} className="animate-bounce" />
         </a>
       </motion.div>
