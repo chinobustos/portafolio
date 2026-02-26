@@ -43,7 +43,7 @@ const About = () => {
     {
       icon: GraduationCap,
       title: 'Educación',
-      content: 'Lic. en Sistemas de Información\nUniversidad Champagnat',
+      content: 'Licenciatura en Sistemas de Información\nUniversidad Champagnat',
       color: 'from-red-600 to-red-800'
     },
     {
