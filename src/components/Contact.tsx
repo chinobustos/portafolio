@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react'; 
 // Importa emailjs y useRef
 import emailjs from '@emailjs/browser'; 
 import { motion } from 'framer-motion';
@@ -12,7 +12,7 @@ const PUBLIC_KEY = 'vKPTqDVhBpp1PF0vH';
 
 const Contact = () => {
   // Referencia para capturar el formulario HTML
-  const form = React.useRef<HTMLFormElement>(null); 
+  const form = useRef<HTMLFormElement>(null); 
   
   const [isVisible, setIsVisible] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -134,22 +134,28 @@ const Contact = () => {
                 {contactInfo.map((info, index) => (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
-                    transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
-                    className="flex items-center space-x-4"
+                    initial={{ opacity: 0, x: -30 }}
+                    animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -30 }}
+                    transition={{ duration: 0.6, delay: 0.4 + index * 0.12 }}
+                    whileHover={{ x: 5 }}
+                    className="flex items-center space-x-4 group"
                   >
-                    <div className="bg-black p-3 rounded-full red-border-glow">
+                    <motion.div
+                      className="bg-black p-3 rounded-full red-border-glow"
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      transition={{ duration: 0.2 }}
+                    >
                       <info.icon className="w-5 h-5 text-red-500" />
-                    </div>
+                    </motion.div>
                     <div>
                       <h4 className="font-semibold text-white font-heading">{info.title}</h4>
-                      <a
+                      <motion.a
                         href={info.href}
-                        className="text-gray-300 hover:text-red-500 transition-colors duration-300"
+                        whileHover={{ color: "#ff003c" }}
+                        className="text-gray-300 transition-colors duration-300"
                       >
                         {info.content}
-                      </a>
+                      </motion.a>
                     </div>
                   </motion.div>
                 ))}
@@ -160,28 +166,33 @@ const Contact = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
               transition={{ duration: 0.6, delay: 0.8 }}
-              className="bg-black p-6 rounded-xl red-border-glow"
+              className="bg-black p-6 rounded-xl red-border-glow hover:border-red-500 transition-all duration-300"
             >
               <h4 className="font-semibold text-white mb-4 font-heading">
                 ¿POR QUÉ TRABAJAR CONMIGO?
               </h4>
               <ul className="space-y-2 text-gray-300">
-                <li className="flex items-center">
-                  <div className="w-2 h-2 bg-red-500 rounded-full mr-3"></div>
-                  Entrega puntual y calidad garantizada
-                </li>
-                <li className="flex items-center">
-                  <div className="w-2 h-2 bg-red-500 rounded-full mr-3"></div>
-                  Comunicación clara y constante
-                </li>
-                <li className="flex items-center">
-                  <div className="w-2 h-2 bg-red-500 rounded-full mr-3"></div>
-                  Soporte post-lanzamiento
-                </li>
-                <li className="flex items-center">
-                  <div className="w-2 h-2 bg-red-500 rounded-full mr-3"></div>
-                  Tecnologías modernas y actualizadas
-                </li>
+                {[
+                  'Entrega puntual y calidad garantizada',
+                  'Comunicación clara y constante',
+                  'Soporte post-lanzamiento',
+                  'Tecnologías modernas y actualizadas'
+                ].map((item, i) => (
+                  <motion.li
+                    key={i}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -10 }}
+                    transition={{ delay: i * 0.1 }}
+                    whileHover={{ x: 5 }}
+                    className="flex items-center group"
+                  >
+                    <motion.div
+                      className="w-2 h-2 bg-red-500 rounded-full mr-3"
+                      whileHover={{ scale: 1.5 }}
+                    />
+                    {item}
+                  </motion.li>
+                ))}
               </ul>
             </motion.div>
           </motion.div>
@@ -203,68 +214,100 @@ const Contact = () => {
               {/* ELIMINAMOS _captcha y _next, EmailJS gestiona la respuesta */}
               
               {/* === NUEVO CAMPO DE NOMBRE === */}
-              <div className="relative">
-                <input
+              <motion.div
+                className="relative"
+                initial={{ opacity: 0, y: 10 }}
+                animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+                transition={{ delay: 0.5 }}
+              >
+                <motion.input
                   type="text"
-                  name="user_name" // DEBE coincidir con {{user_name}} en la plantilla de EmailJS
+                  name="user_name"
                   value={formData.user_name}
                   onChange={handleChange}
                   required
-                  className="w-full bg-black/70 text-white px-4 py-3 rounded-lg form-glow transition-all duration-300 peer"
+                  className="w-full bg-black/70 text-white px-4 py-3 rounded-lg form-glow transition-all duration-300 peer border border-gray-700 focus:border-red-500 focus:bg-black/90"
                   placeholder=" "
+                  whileFocus={{ boxShadow: "0 0 20px rgba(255, 0, 60, 0.3)" }}
                 />
                 <label className="absolute left-4 top-3 text-gray-400 transition-all duration-300 peer-focus:-top-2 peer-focus:left-2 peer-focus:text-red-500 peer-focus:text-sm peer-focus:bg-black peer-focus:px-2 peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:left-2 peer-[:not(:placeholder-shown)]:text-red-500 peer-[:not(:placeholder-shown)]:text-sm peer-[:not(:placeholder-shown)]:bg-black peer-[:not(:placeholder-shown)]:px-2">
                   Nombre completo
                 </label>
-              </div>
+              </motion.div>
 
               {/* CAMPO DE CORREO (Cambia 'name' de 'email' a 'user_email') */}
-              <div className="relative">
-                <input
+              <motion.div
+                className="relative"
+                initial={{ opacity: 0, y: 10 }}
+                animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+                transition={{ delay: 0.6 }}
+              >
+                <motion.input
                   type="email"
-                  name="user_email" // DEBE coincidir con {{user_email}} en la plantilla de EmailJS
+                  name="user_email"
                   value={formData.user_email}
                   onChange={handleChange}
                   required
-                  className="w-full bg-black/70 text-white px-4 py-3 rounded-lg form-glow transition-all duration-300 peer"
+                  className="w-full bg-black/70 text-white px-4 py-3 rounded-lg form-glow transition-all duration-300 peer border border-gray-700 focus:border-red-500 focus:bg-black/90"
                   placeholder=" "
+                  whileFocus={{ boxShadow: "0 0 20px rgba(255, 0, 60, 0.3)" }}
                 />
                 <label className="absolute left-4 top-3 text-gray-400 transition-all duration-300 peer-focus:-top-2 peer-focus:left-2 peer-focus:text-red-500 peer-focus:text-sm peer-focus:bg-black peer-focus:px-2 peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:left-2 peer-[:not(:placeholder-shown)]:text-red-500 peer-[:not(:placeholder-shown)]:text-sm peer-[:not(:placeholder-shown)]:bg-black peer-[:not(:placeholder-shown)]:px-2">
                   Correo electrónico
                 </label>
-              </div>
+              </motion.div>
 
               {/* CAMPO DE MENSAJE */}
-              <div className="relative">
-                <textarea
-                  name="message" // DEBE coincidir con {{message}} en la plantilla de EmailJS
+              <motion.div
+                className="relative"
+                initial={{ opacity: 0, y: 10 }}
+                animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+                transition={{ delay: 0.7 }}
+              >
+                <motion.textarea
+                  name="message"
                   value={formData.message}
                   onChange={handleChange}
                   required
                   rows={5}
-                  className="w-full bg-black/70 text-white px-4 py-3 rounded-lg form-glow transition-all duration-300 peer resize-none"
+                  className="w-full bg-black/70 text-white px-4 py-3 rounded-lg form-glow transition-all duration-300 peer resize-none border border-gray-700 focus:border-red-500 focus:bg-black/90"
                   placeholder=" "
+                  whileFocus={{ boxShadow: "0 0 20px rgba(255, 0, 60, 0.3)" }}
                 />
                 <label className="absolute left-4 top-3 text-gray-400 transition-all duration-300 peer-focus:-top-2 peer-focus:left-2 peer-focus:text-red-500 peer-focus:text-sm peer-focus:bg-black peer-focus:px-2 peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:left-2 peer-[:not(:placeholder-shown)]:text-red-500 peer-[:not(:placeholder-shown)]:text-sm peer-[:not(:placeholder-shown)]:bg-black peer-[:not(:placeholder-shown)]:px-2">
                   Mensaje
                 </label>
-              </div>
+              </motion.div>
               
               {/* INDICADOR DE ESTADO */}
               {status && (
-                <p className={`text-center font-semibold ${status.startsWith('Error') ? 'text-yellow-500' : 'text-red-500'}`}>
+                <motion.p
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className={`text-center font-semibold ${status.startsWith('Error') ? 'text-yellow-500' : 'text-red-500'}`}
+                >
                   {status}
-                </p>
+                </motion.p>
               )}
 
-              <button
+              <motion.button
                 type="submit"
-                disabled={isSubmitting} // Deshabilitar durante el envío
+                disabled={isSubmitting}
+                initial={{ opacity: 0, y: 10 }}
+                animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+                transition={{ delay: 0.8 }}
+                whileHover={!isSubmitting ? { scale: 1.02, boxShadow: "0 0 30px rgba(255, 0, 60, 0.5)" } : {}}
+                whileTap={!isSubmitting ? { scale: 0.98 } : {}}
                 className="w-full bg-gradient-to-r from-red-600 to-red-800 text-white py-3 px-6 rounded-lg font-semibold hover:from-red-700 hover:to-red-900 transition-all duration-300 button-scale flex items-center justify-center space-x-2 font-heading pulse-red disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <Send size={20} />
+                <motion.div
+                  animate={isSubmitting ? { rotate: 360 } : {}}
+                  transition={{ duration: 1, repeat: Infinity }}
+                >
+                  <Send size={20} />
+                </motion.div>
                 <span>{isSubmitting ? 'ENVIANDO...' : 'ENVIAR MENSAJE'}</span>
-              </button>
+              </motion.button>
             </form>
           </motion.div>
         </div>

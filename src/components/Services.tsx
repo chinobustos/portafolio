@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Code, Palette, Globe, Smartphone, Zap, Users } from 'lucide-react';
 
 const Services = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -74,20 +73,28 @@ const Services = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.12,
         delayChildren: 0.3
       }
     }
   };
 
   const itemVariants = {
-    hidden: { y: 30, opacity: 0 },
+    hidden: { y: 50, opacity: 0, rotateY: -10 },
     visible: {
       y: 0,
       opacity: 1,
+      rotateY: 0,
       transition: {
-        duration: 0.6,
-        ease: "easeOut"
+        duration: 0.7
+      }
+    },
+    hover: {
+      y: -12,
+      boxShadow: "0 25px 50px rgba(255, 0, 60, 0.2)",
+      borderColor: "#ff003c",
+      transition: {
+        duration: 0.3
       }
     }
   };
@@ -120,20 +127,32 @@ const Services = () => {
             <motion.div
               key={index}
               variants={itemVariants}
-              className={`relative bg-black p-8 rounded-xl card-hover group ${
-                hoveredIndex === index ? 'wobble' : ''
-              }`}
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
+              whileHover="hover"
+              className="relative bg-gradient-to-br from-gray-900 to-black p-8 rounded-xl border border-gray-800 group overflow-hidden"
             >
+              {/* Animated background gradient */}
+              <motion.div
+                className={`absolute inset-0 bg-gradient-to-r ${service.gradient} opacity-0 group-hover:opacity-5`}
+                transition={{ duration: 0.3 }}
+              />
+              
               <div className="relative z-10">
-                <div className={`inline-flex p-3 rounded-full bg-gradient-to-r ${service.gradient} mb-6`}>
+                <motion.div
+                  className={`inline-flex p-3 rounded-full bg-gradient-to-r ${service.gradient} mb-6`}
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  transition={{ duration: 0.3 }}
+                >
                   <service.icon className="w-6 h-6 text-white" />
-                </div>
+                </motion.div>
                 
-                <h3 className="text-xl font-bold mb-4 text-white group-hover:text-red-500 transition-colors duration-300 font-heading">
+                <motion.h3
+                  initial={{ color: "#ffffff" }}
+                  whileHover={{ color: "#ff003c" }}
+                  transition={{ duration: 0.2 }}
+                  className="text-xl font-bold mb-4 text-white font-heading"
+                >
                   {service.title}
-                </h3>
+                </motion.h3>
                 
                 <p className="text-gray-300 mb-6 text-sm leading-relaxed">
                   {service.description}
@@ -141,15 +160,21 @@ const Services = () => {
                 
                 <ul className="space-y-2">
                   {service.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center text-sm text-gray-400">
-                      <div className="w-1.5 h-1.5 bg-red-500 rounded-full mr-3"></div>
+                    <motion.li
+                      key={featureIndex}
+                      initial={{ x: 0 }}
+                      whileHover={{ x: 5 }}
+                      className="flex items-center text-sm text-gray-400 transition-colors duration-300 group-hover:text-gray-300"
+                    >
+                      <motion.div
+                        className="w-1.5 h-1.5 bg-red-500 rounded-full mr-3"
+                        whileHover={{ scale: 1.5 }}
+                      />
                       {feature}
-                    </li>
+                    </motion.li>
                   ))}
                 </ul>
               </div>
-              
-              <div className={`absolute inset-0 bg-gradient-to-r ${service.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-xl`}></div>
             </motion.div>
           ))}
         </motion.div>

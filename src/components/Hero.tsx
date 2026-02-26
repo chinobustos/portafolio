@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Palette, ChevronDown } from 'lucide-react';
+// background image asset
+import backHero from '../multimedia/back_hero.png';
 
 const Hero = () => {
   const [text, setText] = useState('');
@@ -37,15 +39,21 @@ const Hero = () => {
       y: 0,
       opacity: 1,
       transition: {
-        duration: 0.8,
-        ease: [0.22, 1, 0.36, 1]
+        duration: 0.8
       }
     }
   };
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center animated-gradient">
+    <section
+      id="hero"
+      className="relative min-h-screen flex items-center justify-center bg-cover bg-center"
+      style={{ backgroundImage: `url(${backHero})` }}
+    >
+      {/* dark overlay */}
       <div className="absolute inset-0 bg-black/50"></div>
+      {/* animated gradient overlay (blend with image) */}
+      <div className="absolute inset-0 animated-gradient mix-blend-overlay opacity-30"></div>
       
       <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -89,30 +97,42 @@ const Hero = () => {
             variants={itemVariants}
             className="flex justify-center space-x-6 mb-16"
           >
-            <a
-              href="https://github.com/chinobustos"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-4 rounded-full bg-black/70 hover:bg-red-600 transition-all duration-300 hover:scale-110 red-glow button-scale"
-            >
-              <Github size={28} />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/ivan-bustosdev"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-4 rounded-full bg-black/70 hover:bg-red-600 transition-all duration-300 hover:scale-110 red-glow button-scale"
-            >
-              <Linkedin size={28} />
-            </a>
-            <a
-              href="https://behance.net"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-4 rounded-full bg-black/70 hover:bg-red-600 transition-all duration-300 hover:scale-110 red-glow button-scale"
-            >
-              <Palette size={28} />
-            </a>
+            {[
+              {
+                url: "https://github.com/chinobustos",
+                icon: Github,
+                label: "GitHub"
+              },
+              {
+                url: "https://www.linkedin.com/in/ivan-bustosdev",
+                icon: Linkedin,
+                label: "LinkedIn"
+              },
+              {
+                url: "https://behance.net",
+                icon: Palette,
+                label: "Behance"
+              }
+            ].map((social, index) => (
+              <motion.a
+                key={social.label}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                custom={index}
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 2 + index * 0.15, duration: 0.5 }}
+                whileHover={{
+                  scale: 1.15,
+                  boxShadow: "0 0 20px rgba(255, 0, 60, 0.5)"
+                }}
+                whileTap={{ scale: 0.95 }}
+                className="p-4 rounded-full bg-black/70 hover:bg-red-600 transition-colors duration-300 red-glow button-scale border border-red-600/20 hover:border-red-500"
+              >
+                <social.icon size={28} />
+              </motion.a>
+            ))}
           </motion.div>
         </motion.div>
       </div>

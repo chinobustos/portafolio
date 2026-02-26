@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, Github, Smartphone, Globe, ShoppingCart } from 'lucide-react';
 
@@ -91,20 +91,27 @@ const Projects = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.12,
         delayChildren: 0.3
       }
     }
   };
 
   const itemVariants = {
-    hidden: { y: 30, opacity: 0 },
+    hidden: { y: 50, opacity: 0, rotateX: -10 },
     visible: {
       y: 0,
       opacity: 1,
+      rotateX: 0,
       transition: {
-        duration: 0.6,
-        ease: "easeOut"
+        duration: 0.7
+      }
+    },
+    hover: {
+      y: -10,
+      boxShadow: "0 20px 40px rgba(255, 0, 60, 0.3)",
+      transition: {
+        duration: 0.3
       }
     }
   };
@@ -137,54 +144,74 @@ const Projects = () => {
             <motion.div
               key={index}
               variants={itemVariants}
-              className="group relative bg-black rounded-xl overflow-hidden card-hover"
+              whileHover="hover"
+              className="group relative bg-gradient-to-br from-gray-900 to-black rounded-xl overflow-hidden border border-gray-800 hover:border-red-600/50 transition-all duration-300"
             >
               <div className="relative h-48 overflow-hidden">
-                <img
+                <motion.img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  className="w-full h-full object-cover"
+                  whileHover={{ scale: 1.15 }}
+                  transition={{ duration: 0.4 }}
                 />
-                <div className="absolute inset-0 bg-black/60 group-hover:bg-black/30 transition-colors duration-300"></div>
-                <div className={`absolute top-4 right-4 p-2 rounded-full bg-gradient-to-r ${project.gradient}`}>
+                <motion.div
+                  initial={{ opacity: 0.6 }}
+                  whileHover={{ opacity: 0.2 }}
+                  transition={{ duration: 0.3 }}
+                  className="absolute inset-0 bg-black"
+                />
+                <motion.div
+                  className={`absolute top-4 right-4 p-2 rounded-full bg-gradient-to-r ${project.gradient}`}
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                >
                   <project.icon className="w-5 h-5 text-white" />
-                </div>
+                </motion.div>
               </div>
               
               <div className="p-6">
-                <h3 className="text-xl font-bold mb-2 text-white group-hover:text-red-500 transition-colors duration-300 font-heading">
+                <motion.h3
+                  initial={{ color: "#ffffff" }}
+                  whileHover={{ color: "#ff003c" }}
+                  className="text-xl font-bold mb-2 text-white transition-colors duration-300 font-heading"
+                >
                   {project.title}
-                </h3>
+                </motion.h3>
                 <p className="text-gray-300 mb-4 text-sm">
                   {project.description}
                 </p>
                 
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.map((tech) => (
-                    <span
+                  {project.technologies.map((tech, i) => (
+                    <motion.span
                       key={tech}
-                      className="px-3 py-1 bg-gray-900 text-red-400 rounded-full text-xs border border-red-900"
+                      initial={{ opacity: 0.7 }}
+                      whileHover={{ opacity: 1, scale: 1.05 }}
+                      transition={{ delay: i * 0.05 }}
+                      className="px-3 py-1 bg-gray-900 text-red-400 rounded-full text-xs border border-red-900 hover:bg-red-900/30 transition-all duration-300"
                     >
                       {tech}
-                    </span>
+                    </motion.span>
                   ))}
                 </div>
                 
                 <div className="flex space-x-4">
-                  <a
+                  <motion.a
                     href={project.liveUrl}
-                    className="flex items-center text-gray-300 hover:text-red-500 transition-colors duration-300"
+                    whileHover={{ x: 3, color: "#ff003c" }}
+                    className="flex items-center text-gray-300 transition-colors duration-300"
                   >
                     <ExternalLink size={16} className="mr-1" />
                     <span className="text-sm">Demo</span>
-                  </a>
-                  <a
+                  </motion.a>
+                  <motion.a
                     href={project.githubUrl}
-                    className="flex items-center text-gray-300 hover:text-red-500 transition-colors duration-300"
+                    whileHover={{ x: 3, color: "#ff003c" }}
+                    className="flex items-center text-gray-300 transition-colors duration-300"
                   >
                     <Github size={16} className="mr-1" />
                     <span className="text-sm">Código</span>
-                  </a>
+                  </motion.a>
                 </div>
               </div>
             </motion.div>

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { motion, spring } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import { Code, Palette, Globe, GraduationCap, Briefcase, Languages } from 'lucide-react';
 
 const About = () => {
@@ -81,18 +81,30 @@ const About = () => {
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -50 }}
+            initial={{ opacity: 0, x: -50, scale: 0.9 }}
+            animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -50, scale: isVisible ? 1 : 0.9 }}
             transition={{ duration: 0.8, delay: 0.2 }}
+            whileHover={{ scale: 1.05 }}
             className="relative"
           >
             <div className="w-80 h-80 mx-auto relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-red-800 rounded-full blur-2xl opacity-30"></div>
-              <div className="relative w-full h-full bg-black rounded-full flex items-center justify-center red-border-glow">
-                <div className="w-72 h-72 bg-gradient-to-br from-red-600 to-red-800 rounded-full flex items-center justify-center">
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-red-600 to-red-800 rounded-full blur-2xl opacity-30"
+                animate={{ scale: [1, 1.1, 1] }}
+                transition={{ duration: 3, repeat: Infinity }}
+              />
+              <motion.div
+                className="relative w-full h-full bg-black rounded-full flex items-center justify-center red-border-glow"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              >
+                <motion.div
+                  className="w-72 h-72 bg-gradient-to-br from-red-600 to-red-800 rounded-full flex items-center justify-center"
+                  whileHover={{ scale: 1.05 }}
+                >
                   <span className="text-6xl font-bold text-white font-display">IB</span>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
             </div>
           </motion.div>
 
@@ -110,12 +122,22 @@ const About = () => {
                 {technologies.map((tech, index) => (
                   <motion.div
                     key={tech.name}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
-                    transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
-                    className="bg-black p-4 rounded-lg text-center card-hover"
+                    initial={{ opacity: 0, y: 20, scale: 0.8 }}
+                    animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20, scale: isVisible ? 1 : 0.8 }}
+                    transition={{ duration: 0.6, delay: 0.6 + index * 0.08 }}
+                    whileHover={{
+                      y: -8,
+                      scale: 1.05,
+                      boxShadow: "0 10px 25px rgba(255, 0, 60, 0.2)"
+                    }}
+                    className="bg-gradient-to-br from-gray-900 to-black p-4 rounded-lg border border-gray-800 hover:border-red-600/50 transition-all duration-300"
                   >
-                    <tech.icon className={`w-8 h-8 mx-auto mb-2 ${tech.color}`} />
+                    <motion.div
+                      whileHover={{ rotate: 10, scale: 1.2 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <tech.icon className={`w-8 h-8 mx-auto mb-2 ${tech.color}`} />
+                    </motion.div>
                     <span className="text-sm text-gray-300">{tech.name}</span>
                   </motion.div>
                 ))}
@@ -126,15 +148,23 @@ const About = () => {
               {cards.map((card, index) => (
                 <motion.div
                   key={card.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
-                  transition={{ duration: 0.6, delay: 0.8 + index * 0.2 }}
-                  className="bg-black p-6 rounded-lg card-hover"
+                  initial={{ opacity: 0, y: 30, rotateX: -10 }}
+                  animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 30, rotateX: isVisible ? 0 : -10 }}
+                  transition={{ duration: 0.7, delay: 0.8 + index * 0.2 }}
+                  whileHover={{
+                    y: -8,
+                    boxShadow: "0 20px 40px rgba(255, 0, 60, 0.15)"
+                  }}
+                  className="bg-gradient-to-br from-gray-900 to-black p-6 rounded-lg border border-gray-800 hover:border-red-600/50 transition-all duration-300"
                 >
                   <div className="flex items-center mb-4">
-                    <div className={`p-3 rounded-full bg-gradient-to-r ${card.color} mr-4`}>
+                    <motion.div
+                      className={`p-3 rounded-full bg-gradient-to-r ${card.color} mr-4`}
+                      whileHover={{ scale: 1.15, rotate: 5 }}
+                      transition={{ duration: 0.2 }}
+                    >
                       <card.icon className="w-6 h-6 text-white" />
-                    </div>
+                    </motion.div>
                     <h4 className="text-xl font-bold text-white font-heading">{card.title}</h4>
                   </div>
                   <p className="text-gray-300 whitespace-pre-line">{card.content}</p>

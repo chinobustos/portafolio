@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Montserrat:wght@300;400;500;600;700&display=swap');
 
 * {
   margin: 0;
@@ -19,12 +19,12 @@ body {
 }
 
 .font-display {
-  font-family: 'Bebas Neue', cursive;
-  letter-spacing: 2px;
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 0.5px;
 }
 
 .font-heading {
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 600;
 }
 
