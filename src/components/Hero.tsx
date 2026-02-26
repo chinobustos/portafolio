@@ -108,11 +108,7 @@ const Hero = () => {
                 icon: Linkedin,
                 label: "LinkedIn"
               },
-              {
-                url: "https://behance.net",
-                icon: Palette,
-                label: "Behance"
-              }
+             
             ].map((social, index) => (
               <motion.a
                 key={social.label}
