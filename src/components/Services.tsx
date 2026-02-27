@@ -72,12 +72,6 @@ const Services = () => {
       percentage: 90
     },
     {
-      icon: Smartphone,
-      title: 'Apps Móviles',
-      gradient: 'from-red-800 to-black',
-      percentage: 80
-    },
-    {
       icon: Zap,
       title: 'Optimización',
       gradient: 'from-red-600 to-black',
@@ -145,18 +139,18 @@ const Services = () => {
           variants={containerVariants}
           initial="hidden"
           animate={isVisible ? "visible" : "hidden"}
-          className="grid grid-cols-4 gap-8 grid-flow-dense auto-rows-max"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8 grid-flow-dense auto-rows-max"
         >
           {services.map((service, index) => {
             const spanClasses = [
-              'col-span-2 row-span-2',
-              'col-span-2 row-span-1',
-              'col-span-1 row-span-1',
-              'col-span-1 row-span-1',
-              'col-span-1 row-span-1',
-              'col-span-1 row-span-1'
+              'sm:col-span-2 sm:row-span-2 md:col-span-2 md:row-span-2 lg:col-span-2 lg:row-span-2',
+              'sm:col-span-2 sm:row-span-1 md:col-span-1 md:row-span-2 lg:col-span-1 lg:row-span-1',
+              'sm:col-span-1 sm:row-span-1 md:col-span-1 md:row-span-1 lg:col-span-1 lg:row-span-1',
+              'sm:col-span-1 sm:row-span-1 md:col-span-1 md:row-span-1 lg:col-span-1 lg:row-span-1',
+              'sm:col-span-1 sm:row-span-1 md:col-span-1 md:row-span-1 lg:col-span-1 lg:row-span-1'
             ];
             const spanClass = spanClasses[index] || '';
+            const isUiUxCard = index === 1;
 
             return (
               <motion.div
@@ -166,7 +160,11 @@ const Services = () => {
                 initial="hidden"
                 animate={isVisible ? "visible" : "hidden"}
                 whileHover="hover"
-                className={`relative bg-gradient-to-br from-gray-900 to-black p-8 rounded-xl border border-gray-800 group overflow-hidden flex flex-col justify-between ${spanClass}`}
+                className={`relative p-8 rounded-xl border group overflow-hidden flex flex-col justify-between ${
+                  isUiUxCard
+                    ? 'bg-gradient-to-br from-red-900 to-black border-red-800'
+                    : 'bg-gradient-to-br from-gray-900 to-black border-gray-800'
+                } ${spanClass}`}
               >
               {/* Animated background gradient */}
               <motion.div
@@ -176,7 +174,11 @@ const Services = () => {
               
               <div className="relative z-10 flex flex-col items-center justify-center h-full">
                 <motion.div
-                  className={`inline-flex p-4 rounded-full bg-gradient-to-r ${service.gradient} mb-6`}
+                  className={`inline-flex p-4 rounded-full mb-6 ${
+                    isUiUxCard
+                      ? 'bg-blue-500'
+                      : `bg-gradient-to-r ${service.gradient}`
+                  }`}
                   initial={{ scale: 0, rotate: -180 }}
                   animate={isVisible ? { scale: 1, rotate: 0 } : { scale: 0, rotate: -180 }}
                   transition={{ duration: 0.6, delay: index * 0.12 + 0.2 }}
@@ -189,7 +191,9 @@ const Services = () => {
                   initial={{ opacity: 0, y: 10 }}
                   animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
                   transition={{ duration: 0.5, delay: index * 0.12 + 0.3 }}
-                  className="text-xl font-bold text-center text-white font-heading mb-6"
+                  className={`text-xl font-bold text-center font-heading mb-6 ${
+                    isUiUxCard ? 'text-white' : 'text-white'
+                  }`}
                 >
                   {service.title}
                 </motion.h3>
@@ -200,17 +204,19 @@ const Services = () => {
                   animate={isVisible ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
                   transition={{ duration: 0.5, delay: index * 0.12 + 0.4 }}
                 >
-                  <div className="text-4xl font-bold gradient-text mb-2\">
+                  <div className={`text-4xl font-bold mb-2 ${isUiUxCard ? 'text-white' : 'gradient-text'}`}>
                     {isVisible ? (
                       <>
-                        <PercentageCounter value={service.percentage} delay={index * 120 + 400} />
-                        %
+                        <span className="text-white inline-block">
+                          <PercentageCounter value={service.percentage} delay={index * 120 + 400} />
+                        </span>
+                        <span className="text-white">%</span>
                       </>
                     ) : (
-                      <span>0%</span>
+                      <span className="text-white">0%</span>
                     )}
                   </div>
-                  <p className="text-sm text-gray-400">Experiencia</p>
+                  <p className={`text-sm ${ isUiUxCard ? 'text-white' : 'text-gray-400' }`}>Experiencia</p>
                 </motion.div>
               </div>
             </motion.div>
