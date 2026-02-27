@@ -55,7 +55,7 @@ const Scalability = () => {
   }, []);
 
   return (
-    <section id="scalability" className="snap-start min-h-screen w-full bg-gradient-to-b from-black to-gray-900 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-20">
+    <section id="scalability" className="snap-start min-h-screen w-full bg-gradient-to-b from-gray-900 to-black flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-20">
       <div className="w-full max-w-7xl relative">
         {/* Text Content */}
         <motion.div
@@ -67,7 +67,7 @@ const Scalability = () => {
         >
               <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light mb-6 leading-tight">
                 <span className="text-white">Construye tu negocio </span>
-                <span className="gradient-text">100% escalable</span>
+                <span className="text-green-400">100% escalable</span>
               </h2>
               <p className="text-xl sm:text-2xl md:text-3xl text-gray-300">
                 Soluciones web que crecen junto con tu empresa
@@ -121,7 +121,7 @@ const Scalability = () => {
                 <motion.polyline
                   points="50,250 150,200 250,180 350,140 450,100 550,120 650,80 750,60"
                   fill="none"
-                  stroke="#364969"
+                  stroke="#16c224"
                   strokeWidth="3"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -139,8 +139,8 @@ const Scalability = () => {
                       cx={x}
                       cy={yValues[i]}
                       r="6"
-                      fill="#3b82f6"
-                      stroke="#60a5fa"
+                      fill="#38e084"
+                      stroke="#60fa93"
                       strokeWidth="2"
                       initial={{ scale: 0 }}
                       animate={isVisible ? { scale: 1 } : { scale: 0 }}
@@ -152,8 +152,8 @@ const Scalability = () => {
                 {/* Gradient definitions */}
                 <defs>
                   <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.3" />
-                    <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.01" />
+                    <stop offset="0%" stopColor="#3bf644" stopOpacity="0.3" />
+                    <stop offset="100%" stopColor="#043a0b" stopOpacity="0.01" />
                   </linearGradient>
                 </defs>
               </svg>
@@ -165,13 +165,13 @@ const Scalability = () => {
                 animate={isVisible ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
               >
-                <div className="text-6xl font-bold text-blue-400">
+                <div className="text-6xl font-bold text-green-400">
                   {isVisible ? (
                     <PercentageCounterScalability value={100} delay={800} />
                   ) : (
                     0
                   )}
-                  <span className="text-5xl">%</span>
+                  <span className="text-5xl text-green-400">%</span>
                 </div>
               </motion.div>
             </motion.div>

@@ -127,7 +127,7 @@ const Contact = () => {
           >
             {/* ... (INFORMACIÓN DE CONTACTO y ¿POR QUÉ TRABAJAR CONMIGO? son iguales) ... */}
             <div>
-              <h3 className="text-2xl font-bold mb-6 text-red-500 font-heading">
+              <h3 className="text-2xl font-bold mb-6 text-red-900 font-heading">
                 INFORMACIÓN DE CONTACTO
               </h3>
               <div className="space-y-6">
@@ -151,7 +151,7 @@ const Contact = () => {
                       <h4 className="font-semibold text-white font-heading">{info.title}</h4>
                       <motion.a
                         href={info.href}
-                        whileHover={{ color: "#ff003c" }}
+                        whileHover={{ color: "#f700ff7a" }}
                         className="text-gray-300 transition-colors duration-300"
                       >
                         {info.content}
