@@ -69,13 +69,15 @@ const Services = () => {
       icon: Globe,
       title: 'Sitios Web',
       gradient: 'from-red-700 to-red-900',
-      percentage: 90
+      percentage: 90,
+      hasChart: true
     },
     {
       icon: Zap,
       title: 'Optimización',
       gradient: 'from-red-600 to-black',
-      percentage: 88
+      percentage: 88,
+      hasChart: true
     },
     {
       icon: Users,
@@ -126,7 +128,7 @@ const Services = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 gradient-text font-display">
+          <h2 className="text-5xl md:text-6xl font-bold mb-6 gradient-text font-heading">
             MIS SERVICIOS
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
@@ -197,6 +199,22 @@ const Services = () => {
                 >
                   {service.title}
                 </motion.h3>
+                {service.hasChart && (
+                    <div className="w-full h-24 mb-4 overflow-hidden">
+                    <svg viewBox="0 0 100 24" className="w-full h-full">
+                      <motion.polyline
+                        points="0,16 20,8 40,12 60,5 80,14 100,2"
+                        fill="none"
+                        stroke="#f87171"
+                        strokeWidth="2"
+                        initial={{ pathLength: 0 }}
+                        animate={isVisible ? { pathLength: 1 } : { pathLength: 0 }}
+                        transition={{ duration: 1.2, delay: index * 0.12 + 0.4 }}
+                        style={{ originX: 0, originY: 0.5 }}
+                      />
+                    </svg>
+                  </div>
+                )}
                 
                 <motion.div
                   className="text-center"

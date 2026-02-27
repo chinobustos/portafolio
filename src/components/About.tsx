@@ -69,7 +69,7 @@ const About = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 gradient-text font-display">
+          <h2 className="text-5xl md:text-6xl font-bold mb-6 gradient-text font-heading">
             SOBRE MÍ
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
@@ -125,7 +125,7 @@ const About = () => {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-2xl font-bold mb-4 text-red-500 font-heading">
+              <h3 className="text-2xl font-light mb-4 text-red-500 font-heading">
                 TECNOLOGÍAS QUE DOMINO
               </h3>
               <div className="grid grid-cols-3 gap-4">

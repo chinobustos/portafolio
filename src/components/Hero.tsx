@@ -64,7 +64,7 @@ const Hero = () => {
         >
           <motion.h1
             variants={itemVariants}
-            className="text-6xl md:text-8xl lg:text-9xl font-bold mb-6 font-display text-shadow"
+            className="text-6xl md:text-8xl lg:text-9xl font-bold mb-6 font-heading text-shadow"
           >
             <span className="gradient-text">Ivan Bustos</span>
           </motion.h1>

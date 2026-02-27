@@ -1,6 +1,7 @@
 // React import not required with new JSX transform
 import Hero from './components/Hero';
 import About from './components/About';
+import Scalability from './components/Scalability';
 import Projects from './components/Projects';
 import Services from './components/Services';
 import Contact from './components/Contact';
@@ -13,6 +14,7 @@ function App() {
       <Navigation />
       <Hero />
       <About />
+      <Scalability />
       <Projects />
       <Services />
       <Contact />
