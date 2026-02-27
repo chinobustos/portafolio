@@ -66,7 +66,7 @@ const Hero = () => {
             variants={itemVariants}
             className="text-6xl md:text-8xl lg:text-9xl font-bold mb-6 font-display text-shadow"
           >
-            <span className="gradient-text">IVAN BUSTOS</span>
+            <span className="gradient-text">IB</span>
           </motion.h1>
           
           <motion.h2
