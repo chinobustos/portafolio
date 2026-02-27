@@ -117,7 +117,7 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="py-20 bg-black">
+    <section id="projects" className="snap-start min-h-screen py-20 bg-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -129,8 +129,7 @@ const Projects = () => {
             PROYECTOS DESTACADOS
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Una selección de mis trabajos más recientes que demuestran mi 
-            experiencia en desarrollo front-end y diseño de experiencias digitales.
+            Una selección de mis trabajos más recientes.
           </p>
         </motion.div>
 

@@ -99,7 +99,7 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-black">
+    <section id="contact" className="snap-start min-h-screen py-20 bg-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* ... (Motion y Título) ... */}
         <motion.div

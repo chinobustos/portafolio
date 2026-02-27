@@ -1,10 +1,15 @@
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useViewportScroll, useTransform } from 'framer-motion';
 import { Github, Linkedin, ChevronDown } from 'lucide-react';
 // background image asset (project root /multimedia/back_hero.png)
 import backHero from '../multimedia/back_hero.png';
 
 const Hero = () => {
+  const { scrollY } = useViewportScroll();
+  const y = useTransform(scrollY, [0, 500], [0, 100]);
+  // start offset to left immediately and keep sliding further
+  const xText = useTransform(scrollY, [0, 500], [-100, -200]);
+
   const [text, setText] = useState('');
   const fullText = 'Creando experiencias digitales extraordinarias';
 
@@ -45,22 +50,28 @@ const Hero = () => {
   };
 
   return (
-    <section
-      id="hero"
-      className="relative min-h-screen flex items-center justify-center bg-cover bg-center"
-      style={{ backgroundImage: `url(${backHero})` }}
-    >
+    <section id="hero" className="snap-start min-h-screen relative overflow-hidden flex items-center">
+      {/* parallax background */}
+      <motion.div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: `url(${backHero})`,
+          y
+        }}
+      />
       {/* dark overlay */}
-      <div className="absolute inset-0 bg-black/50"></div>
+      {/* dark overlay */}
+      <div className="absolute inset-0 bg-black/50 pointer-events-none"></div>
       {/* animated gradient overlay (blend with image) */}
       <div className="absolute inset-0 animated-gradient mix-blend-overlay opacity-30"></div>
       
-      <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 text-left px-4 sm:px-6 lg:px-8 ml-[12%]">
         <motion.div
+          style={{ x: xText }}
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="max-w-4xl mx-auto"
+          className="max-w-4xl"
         >
           <motion.h1
             variants={itemVariants}

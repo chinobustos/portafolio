@@ -61,7 +61,7 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-20 bg-gradient-to-b from-black to-gray-900">
+    <section id="about" className="snap-start min-h-screen py-20 bg-gradient-to-b from-black to-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -73,8 +73,7 @@ const About = () => {
             SOBRE MÍ
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
-            Apasionado por crear experiencias digitales que combinan diseño elegante 
-            con funcionalidad excepcional. Especializado en desarrollo front-end moderno 
+            Apasionado por crear experiencias digitales . Especializado en el desarrollo  moderno 
             con enfoque en la experiencia del usuario.
           </p>
           <motion.a

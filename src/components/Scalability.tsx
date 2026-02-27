@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useViewportScroll, useTransform } from 'framer-motion';
 
 const PercentageCounterScalability = ({ value, delay }) => {
   const [count, setCount] = useState(0);
@@ -32,6 +32,9 @@ const PercentageCounterScalability = ({ value, delay }) => {
 
 const Scalability = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const { scrollY } = useViewportScroll();
+  const textY = useTransform(scrollY, [0, 500], [50, -50]);
+
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -52,10 +55,11 @@ const Scalability = () => {
   }, []);
 
   return (
-    <section id="scalability" className="min-h-screen w-full bg-gradient-to-b from-black to-gray-900 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-20">
+    <section id="scalability" className="snap-start min-h-screen w-full bg-gradient-to-b from-black to-gray-900 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-20">
       <div className="w-full max-w-7xl relative">
         {/* Text Content */}
         <motion.div
+          style={{ y: textY }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
           transition={{ duration: 0.8 }}
