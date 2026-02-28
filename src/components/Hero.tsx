@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { motion, useViewportScroll, useTransform } from 'framer-motion';
 import { Github, Linkedin, ChevronDown } from 'lucide-react';
 // background image asset (project root /multimedia/back_hero.png)
-import backHero from '../multimedia/back_hero.png';
+import backHero from '../assets/back_hero.png';
 
 const Hero = () => {
   const { scrollY } = useViewportScroll();
