@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const Editorial = () => {
   return (
-    <section className="relative w-full min-h-[40vh] flex items-end bg-black overflow-hidden">
+    <section className="relative w-full min-h-[30vh] flex items-end bg-black overflow-hidden">
       
       {/* Texto gigante */}
       <motion.h2
