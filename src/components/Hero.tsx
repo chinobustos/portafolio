@@ -1,20 +1,15 @@
-import { useEffect, useState } from 'react';
-import { motion, useViewportScroll, useTransform } from 'framer-motion';
-import { Github, Linkedin, ChevronDown } from 'lucide-react';
-// background image asset (project root /multimedia/back_hero.png)
-import backHero from '../assets/back_hero.png';
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { Github, Linkedin, ChevronDown } from "lucide-react";
+import backHero from "../assets/back_hero.png";
 
 const Hero = () => {
-  const { scrollY } = useViewportScroll();
-  const y = useTransform(scrollY, [0, 500], [0, 100]);
-  // start offset to left immediately and keep sliding further
-  const xText = useTransform(scrollY, [0, 500], [-100, -200]);
-
-  const [text, setText] = useState('');
-  const fullText = 'Creando experiencias digitales extraordinarias';
+  const [text, setText] = useState("");
+  const fullText = "Creando experiencias digitales extraordinarias";
 
   useEffect(() => {
     let currentIndex = 0;
+
     const typingInterval = setInterval(() => {
       if (currentIndex <= fullText.length) {
         setText(fullText.slice(0, currentIndex));
@@ -27,137 +22,81 @@ const Hero = () => {
     return () => clearInterval(typingInterval);
   }, []);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.3,
-        delayChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { y: 30, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.8
-      }
-    }
-  };
-
   return (
-    <section id="hero" className="snap-start min-h-screen relative overflow-hidden flex items-center">
-      {/* parallax background */}
-      <motion.div
+    <section className="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
+      {/* Background */}
+      <div
         className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage: `url(${backHero})`,
-          y
-        }}
+        style={{ backgroundImage: `url(${backHero})` }}
       />
-      {/* dark overlay */}
-      {/* dark overlay */}
-      <div className="absolute inset-0 bg-black/50 pointer-events-none"></div>
-      {/* animated gradient overlay (blend with image) */}
-      <div className="absolute inset-0 animated-gradient mix-blend-overlay opacity-30"></div>
-      
-      <div className="relative z-10 text-left px-4 sm:px-6 lg:px-8 ml-[12%]">
-        <motion.div
-          style={{ x: xText }}
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="max-w-4xl"
+
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/60" />
+
+      {/* Content */}
+      <div className="relative z-10 px-6 max-w-4xl mx-auto">
+        <motion.h1
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold mb-6"
         >
-          <motion.h1
-            variants={itemVariants}
-            className="text-6xl md:text-8xl lg:text-9xl font-bold mb-6 font-heading text-shadow"
+          <span className="gradient-text">Ivan Bustos</span>
+        </motion.h1>
+
+        <motion.h2
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.8 }}
+          className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-light mb-4 text-gray-200"
+        >
+          WEB DEVELOPER / DESIGNER
+        </motion.h2>
+
+        <motion.p
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.8 }}
+          className="text-base sm:text-lg md:text-xl mb-6 text-red-500 font-medium"
+        >
+          BIENVENIDOS A MI MUNDO
+        </motion.p>
+
+        <div className="h-6 sm:h-8 mb-8">
+          <p className="text-sm sm:text-base md:text-lg text-gray-300">
+            {text}
+            <span className="animate-pulse text-red-500">|</span>
+          </p>
+        </div>
+
+        <div className="flex justify-center space-x-4 sm:space-x-6 mb-12">
+          <a
+            href="https://github.com/chinobustos"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-3 sm:p-4 rounded-full bg-black/70 hover:bg-red-600 transition-colors duration-300 border border-red-600/20 hover:border-red-500"
           >
-            <span className="gradient-text">Ivan Bustos</span>
-          </motion.h1>
-          
-          <motion.h2
-            variants={itemVariants}
-            className="text-2xl md:text-4xl lg:text-5xl font-light mb-4 text-gray-200 font-heading"
+            <Github size={20} />
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/ivan-bustosdev"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-3 sm:p-4 rounded-full bg-black/70 hover:bg-red-600 transition-colors duration-300 border border-red-600/20 hover:border-red-500"
           >
-            WEB DEVELOPER/DESIGNER.
-          </motion.h2>
-          
-          <motion.p
-            variants={itemVariants}
-            className="text-xl md:text-2xl mb-8 text-red-500 font-medium font-heading"
-          >
-            BIENVENIDOS A MI MUNDO
-          </motion.p>
-          
-          <motion.div
-            variants={itemVariants}
-            className="h-8 mb-12"
-          >
-            <p className="text-lg md:text-xl text-gray-300">
-              {text}
-              <span className="animate-pulse text-red-500">|</span>
-            </p>
-          </motion.div>
-          
-          <motion.div
-            variants={itemVariants}
-            className="flex justify-center space-x-6 mb-16"
-          >
-            {[
-              {
-                url: "https://github.com/chinobustos",
-                icon: Github,
-                label: "GitHub"
-              },
-              {
-                url: "https://www.linkedin.com/in/ivan-bustosdev",
-                icon: Linkedin,
-                label: "LinkedIn"
-              },
-             
-            ].map((social, index) => (
-              <motion.a
-                key={social.label}
-                href={social.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                custom={index}
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 2 + index * 0.15, duration: 0.5 }}
-                whileHover={{
-                  scale: 1.15,
-                  boxShadow: "0 0 20px rgba(255, 0, 60, 0.5)"
-                }}
-                whileTap={{ scale: 0.95 }}
-                className="p-4 rounded-full bg-black/70 hover:bg-red-600 transition-colors duration-300 red-glow button-scale border border-red-600/20 hover:border-red-500"
-              >
-                <social.icon size={28} />
-              </motion.a>
-            ))}
-          </motion.div>
-        </motion.div>
-      </div>
-      
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 2, duration: 0.8 }}
-        className="absolute bottom-6 left-0 w-full flex justify-center px-4 md:left-1/2 md:w-auto md:px-0 md:transform md:-translate-x-1/2"
-      >
+            <Linkedin size={20} />
+          </a>
+        </div>
+
         <a
           href="#about"
           className="flex flex-col items-center text-red-500 hover:text-red-400 transition-colors duration-300"
         >
-          <span className="text-sm mb-1 md:mb-2 font-heading">EXPLORAR</span>
-          <ChevronDown size={24} className="animate-bounce" />
+          <span className="text-xs sm:text-sm mb-1">EXPLORAR</span>
+          <ChevronDown size={22} className="animate-bounce" />
         </a>
-      </motion.div>
+      </div>
     </section>
   );
 };
