@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Animated background gradient */
+:root {
+	--bg-anim-duration: 12s;
+}
+
+.animated-bg {
+	position: fixed;
+	inset: 0;
+	z-index: -10;
+	pointer-events: none;
+	background: linear-gradient(120deg, #0f172a, #0b1220 25%, #1f0f3a 50%, #0b1220 75%, #0f172a);
+	background-size: 200% 200%;
+	animation: bg-pan var(--bg-anim-duration) ease-in-out infinite;
+}
+
+@keyframes bg-pan {
+	0% { background-position: 0% 50%; }
+	50% { background-position: 100% 50%; }
+	100% { background-position: 0% 50%; }
+}
+
+/* Optional subtle overlay for depth */
+.animated-bg::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: radial-gradient(ellipse at center, rgba(255,255,255,0.02), transparent 40%);
+	pointer-events: none;
+}

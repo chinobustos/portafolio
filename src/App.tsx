@@ -6,12 +6,16 @@ import Projects from './components/Projects';
 import Services from './components/Services';
 import Contact from './components/Contact';
 import Navigation from './components/Navigation';
-import Editorial from "./components/Editorial";
+
 import './App.css';
+import './index.css';
+import ParticlesBg from './components/ParticlesBg';
 
 function App() {
   return (
-    <div className="min-h-screen bg-black text-white overflow-x-hidden overflow-y-scroll snap-y snap-mandatory scroll-smooth">
+    <div className="min-h-screen text-white overflow-x-hidden overflow-y-scroll snap-y snap-mandatory scroll-smooth">
+      <ParticlesBg />
+      <div className="animated-bg" aria-hidden="true" />
       <Navigation />
       <Hero />
       <About />
@@ -19,7 +23,7 @@ function App() {
       <Projects />
       <Services />
       <Contact />
-      <Editorial />
+
     </div>
   );
 }

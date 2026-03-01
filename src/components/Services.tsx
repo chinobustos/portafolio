@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Code, Palette, Globe, Zap, Users } from 'lucide-react';
 
@@ -32,19 +32,6 @@ const PercentageCounter = ({ value, delay }: { value: number; delay: number }) =
 };
 
 const Services = () => {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => entry.isIntersecting && setIsVisible(true),
-      { threshold: 0.2 }
-    );
-
-    const section = document.getElementById('services');
-    if (section) observer.observe(section);
-
-    return () => observer.disconnect();
-  }, []);
 
   const services = [
     { icon: Code, title: 'Desarrollo Frontend', percentage: 100 },
@@ -57,7 +44,7 @@ const Services = () => {
   return (
     <section
       id="services"
-      className="relative min-h-screen py-24 overflow-hidden bg-black"
+      className="relative min-h-screen py-24 overflow-hidden bg-transparent"
     >
       <div className="relative max-w-7xl mx-auto px-6">
 
@@ -73,70 +60,76 @@ const Services = () => {
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 auto-rows-[180px]">
           {services.map((service, index) => {
-
-            const spanClasses = [
-              'row-span-2 col-span-2 lg:col-span-2',
-              '',
-              '',
-              '',
-              'col-span-2'
-            ];
-
-            const isFrontend = index === 0;
-            const isWebsite = service.title === 'Sitios Web';
-
             return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 40 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ scale: 1.02 }}
-                className={`relative p-8 rounded-[32px] backdrop-blur-xl 
-                  ${isWebsite 
-                    ? 'border-2 border-emerald-400 shadow-[0_0_25px_rgba(16,185,129,0.4)]' 
-                    : 'border border-white/10'}
-                  shadow-2xl shadow-black/40 transition duration-300 
-                  flex flex-col justify-between overflow-hidden 
-                  bg-white/5
-                  ${spanClasses[index]}`}
-              >
-                {/* Gradiente especial solo para Frontend */}
-                {isFrontend && (
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#A435F0]/40 via-[#7B2CBF]/30 to-transparent" />
-                )}
-
-                <div className="relative z-10">
-                  <service.icon className={`w-6 h-6 mb-6 ${isFrontend ? 'text-white' : 'text-zinc-300'}`} />
-                  
-                  <h3 className="text-sm text-zinc-400 mb-2 tracking-wide">
-                    {service.title}
-                  </h3>
-
-                  <div className="text-5xl font-semibold tracking-tight text-white">
-                    {isVisible ? (
-                      <>
-                        <PercentageCounter
-                          value={service.percentage}
-                          delay={index * 150}
-                        />
-                        %
-                      </>
-                    ) : (
-                      '0%'
-                    )}
-                  </div>
-
-                  <p className="text-xs text-zinc-500 mt-1">
-                    Nivel de experiencia
-                  </p>
-                </div>
-              </motion.div>
+              <ServiceCard key={index} service={service} index={index} />
             );
           })}
         </div>
       </div>
     </section>
+  );
+};
+
+const ServiceCard = ({ service, index }: { service: any; index: number }) => {
+  const [started, setStarted] = useState(false);
+
+  const spanClasses = [
+    'row-span-2 col-span-2 lg:col-span-2',
+    '',
+    '',
+    '',
+    'col-span-2'
+  ];
+
+  const isFrontend = index === 0;
+  const isWebsite = service.title === 'Sitios Web';
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, amount: 0.2 }}
+      onViewportEnter={() => setStarted(true)}
+      onViewportLeave={() => setStarted(false)}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      whileHover={{ scale: 1.02 }}
+      className={`relative p-8 rounded-[32px] backdrop-blur-xl 
+        ${isWebsite 
+          ? 'border-2 border-emerald-400 shadow-[0_0_25px_rgba(16,185,129,0.4)]' 
+          : 'border border-white/10'}
+        shadow-2xl shadow-black/40 transition duration-300 
+        flex flex-col justify-between overflow-hidden 
+        bg-white/5
+        ${spanClasses[index]}`}
+    >
+      {isFrontend && (
+        <div className="absolute inset-0 bg-gradient-to-br from-[#A435F0]/40 via-[#7B2CBF]/30 to-transparent" />
+      )}
+
+      <div className="relative z-10">
+        <service.icon className={`w-6 h-6 mb-6 ${isFrontend ? 'text-white' : 'text-zinc-300'}`} />
+
+        <h3 className="text-sm text-zinc-400 mb-2 tracking-wide">
+          {service.title}
+        </h3>
+
+        <div className="text-5xl font-semibold tracking-tight text-white">
+          {started ? (
+            <>
+              <PercentageCounter
+                value={service.percentage}
+                delay={index * 150}
+              />
+              %
+            </>
+          ) : (
+            '0%'
+          )}
+        </div>
+
+        <p className="text-xs text-zinc-500 mt-1">Nivel de experiencia</p>
+      </div>
+    </motion.div>
   );
 };
 

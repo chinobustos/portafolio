@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { motion, useViewportScroll, useTransform } from 'framer-motion';
 
 const PercentageCounterScalability = ({ value, delay }) => {
@@ -31,28 +31,12 @@ const PercentageCounterScalability = ({ value, delay }) => {
 };
 
 const Scalability = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  
   const { scrollY } = useViewportScroll();
   const textY = useTransform(scrollY, [0, 500], [50, -50]);
 
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    const section = document.getElementById('scalability');
-    if (section) {
-      observer.observe(section);
-    }
-
-    return () => observer.disconnect();
-  }, []);
+  // Animaciones controladas por Framer Motion `whileInView` (viewport once: false)
 
   return (
     <section id="scalability" className="snap-start min-h-screen w-full bg-gradient-to-b from-black to-gray-900 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-20">
@@ -60,9 +44,10 @@ const Scalability = () => {
         {/* Text Content */}
         <motion.div
           style={{ y: textY }}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
-          transition={{ duration: 0.8 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.1 }}
+            transition={{ duration: 0.8 }}
           className="relative z-10 text-center mb-12"
         >
               <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light mb-6 leading-tight">
@@ -77,8 +62,9 @@ const Scalability = () => {
         {/* SVG Chart */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 30 }}
-          transition={{ duration: 1 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.1 }}
+            transition={{ duration: 1 }}
           className="relative z-10 flex items-center justify-center h-100"
         >
               <svg
@@ -89,7 +75,8 @@ const Scalability = () => {
                 {/* Grid lines */}
                 <motion.g
                   initial={{ opacity: 0 }}
-                  animate={{ opacity: isVisible ? 0.2 : 0 }}
+                  whileInView={{ opacity: 0.2 }}
+                  viewport={{ once: false, amount: 0.1 }}
                   transition={{ duration: 0.8 }}
                   className="text-gray-600"
                 >
@@ -113,7 +100,8 @@ const Scalability = () => {
                   d="M 50,250 L 150,200 L 250,180 L 350,140 L 450,100 L 550,120 L 650,80 L 750,60 L 750,250 Z"
                   fill="url(#areaGradient)"
                   initial={{ clipPath: 'inset(100% 0 0 0)' }}
-                  animate={isVisible ? { clipPath: 'inset(0 0 0 0)' } : { clipPath: 'inset(100% 0 0 0)' }}
+                  whileInView={{ clipPath: 'inset(0 0 0 0)' }}
+                  viewport={{ once: false, amount: 0.15 }}
                   transition={{ duration: 1.5, delay: 0.2 }}
                 />
 
@@ -126,7 +114,8 @@ const Scalability = () => {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   initial={{ pathLength: 0 }}
-                  animate={isVisible ? { pathLength: 1 } : { pathLength: 0 }}
+                  whileInView={{ pathLength: 1 }}
+                  viewport={{ once: false, amount: 0.15 }}
                   transition={{ duration: 1.8, delay: 0.1 }}
                 />
 
@@ -143,7 +132,8 @@ const Scalability = () => {
                       stroke="#60fa93"
                       strokeWidth="2"
                       initial={{ scale: 0 }}
-                      animate={isVisible ? { scale: 1 } : { scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: false, amount: 0.12 }}
                       transition={{ duration: 0.4, delay: 0.2 + i * 0.1 }}
                     />
                   );
@@ -162,7 +152,8 @@ const Scalability = () => {
               <motion.div
                 className="absolute top-1/3 right-1/4 text-center pointer-events-none"
                 initial={{ opacity: 0, scale: 0.5 }}
-                animate={isVisible ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: false, amount: 0.15 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
               >
              

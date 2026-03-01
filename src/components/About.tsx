@@ -1,25 +1,8 @@
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Code, Palette, Globe, Download } from "lucide-react";
 import profileImg from "../assets/profile.png";
 
 const About = () => {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsVisible(true);
-      },
-      { threshold: 0.1 }
-    );
-
-    const section = document.getElementById("about");
-    if (section) observer.observe(section);
-
-    return () => observer.disconnect();
-  }, []);
-
   const technologies = [
     { name: "HTML5", icon: Code, color: "text-red-400" },
     { name: "Tailwind CSS", icon: Palette, color: "text-red-600" },
@@ -43,7 +26,8 @@ const About = () => {
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.1 }}
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
@@ -68,27 +52,36 @@ const About = () => {
           </motion.a>
         </motion.div>
 
-        {/* 🔥 Layout Responsive */}
+        {/* Layout Responsive */}
         <div className="flex flex-col lg:flex-row items-center gap-16">
 
-          {/* IZQUIERDA — IMAGEN */}
+          {/* IZQUIERDA — IMAGEN GRANDE EN MÓVIL */}
           <motion.div
             initial={{ opacity: 0, x: -60 }}
-            animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, amount: 0.1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="w-full lg:w-1/2 flex justify-center"
           >
             <img
               src={profileImg}
               alt="Ivan Bustos"
-              className="w-60 sm:w-72 md:w-80 lg:w-[500px] object-contain"
+              className="
+                w-full
+                max-w-[380px]
+                sm:max-w-[420px]
+                md:w-80
+                lg:w-[500px]
+                object-contain
+              "
             />
           </motion.div>
 
           {/* DERECHA — TECNOLOGÍAS */}
           <motion.div
             initial={{ opacity: 0, x: 60 }}
-            animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : 60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, amount: 0.1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             className="w-full lg:w-1/2"
           >
@@ -101,10 +94,8 @@ const About = () => {
                 <motion.div
                   key={tech.name}
                   initial={{ opacity: 0, y: 20 }}
-                  animate={{
-                    opacity: isVisible ? 1 : 0,
-                    y: isVisible ? 0 : 20,
-                  }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false, amount: 0.15 }}
                   transition={{
                     duration: 0.6,
                     delay: 0.6 + index * 0.05,
@@ -125,6 +116,7 @@ const About = () => {
               ))}
             </div>
           </motion.div>
+
         </div>
       </div>
     </section>
