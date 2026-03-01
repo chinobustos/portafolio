@@ -6,6 +6,7 @@ import Projects from './components/Projects';
 import Services from './components/Services';
 import Contact from './components/Contact';
 import Navigation from './components/Navigation';
+import Editorial from "./components/Editorial";
 import './App.css';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <Projects />
       <Services />
       <Contact />
+      <Editorial />
     </div>
   );
 }

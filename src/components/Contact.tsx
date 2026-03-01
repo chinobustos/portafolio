@@ -99,221 +99,156 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="snap-start min-h-screen py-20 bg-black">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* ... (Motion y Título) ... */}
+  <section id="contact" className="snap-start min-h-screen py-24 bg-black">
+    <div className="max-w-6xl mx-auto px-6">
+
+      {/* ===== TÍTULO ===== */}
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 40 }}
+        transition={{ duration: 0.8 }}
+        className="text-center mb-24"
+      >
+        <h2 className="text-4xl md:text-6xl font-semibold tracking-tight text-white mb-6">
+          Trabajemos juntos
+        </h2>
+
+        <p className="text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
+          Si tienes una idea o proyecto en mente, estaré encantado de ayudarte
+          a convertirlo en una experiencia digital sólida y profesional.
+        </p>
+      </motion.div>
+
+      {/* ===== GRID PRINCIPAL ===== */}
+      <div className="grid lg:grid-cols-2 gap-20">
+
+        {/* ===== INFO IZQUIERDA ===== */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 30 }}
+          initial={{ opacity: 0, x: -40 }}
+          animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -40 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="space-y-16"
         >
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 gradient-text font-heading">
-            TRABAJEMOS JUNTOS
-          </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            ¿Tienes un proyecto en mente? Me encantaría escuchar tus ideas y 
-            ayudarte a convertirlas en realidad digital.
-          </p>
+          <div>
+            <h3 className="text-sm uppercase tracking-widest text-gray-500 mb-10">
+              Información de contacto
+            </h3>
+
+            <div className="space-y-8">
+              {contactInfo.map((info, index) => (
+                <div key={index} className="flex items-start gap-4">
+                  <info.icon className="w-5 h-5 text-white mt-1 opacity-70" />
+                  <div>
+                    <p className="text-white font-medium">
+                      {info.title}
+                    </p>
+                    <a
+                      href={info.href}
+                      className="text-gray-400 hover:text-white transition-colors"
+                    >
+                      {info.content}
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="border border-white/10 rounded-xl p-8 backdrop-blur-sm bg-white/5">
+            <h4 className="text-white mb-6 font-medium">
+              ¿Por qué trabajar conmigo?
+            </h4>
+
+            <ul className="space-y-3 text-gray-400 text-sm">
+              {[
+                'Entrega puntual y calidad garantizada',
+                'Comunicación clara y constante',
+                'Soporte post-lanzamiento',
+                'Tecnologías modernas y actualizadas'
+              ].map((item, i) => (
+                <li key={i} className="flex gap-3">
+                  <span className="w-1.5 h-1.5 bg-white mt-2 rounded-full opacity-60"></span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* ... (Panel de Contacto e Info) ... */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -50 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-8"
-          >
-            {/* ... (INFORMACIÓN DE CONTACTO y ¿POR QUÉ TRABAJAR CONMIGO? son iguales) ... */}
-            <div>
-              <h3 className="text-2xl font-bold mb-6 text-red-900 font-heading">
-                INFORMACIÓN DE CONTACTO
-              </h3>
-              <div className="space-y-6">
-                {contactInfo.map((info, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: -30 }}
-                    animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -30 }}
-                    transition={{ duration: 0.6, delay: 0.4 + index * 0.12 }}
-                    whileHover={{ x: 5 }}
-                    className="flex items-center space-x-4 group"
-                  >
-                    <motion.div
-                      className="bg-black p-3 rounded-full red-border-glow"
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <info.icon className="w-5 h-5 text-red-500" />
-                    </motion.div>
-                    <div>
-                      <h4 className="font-semibold text-white font-heading">{info.title}</h4>
-                      <motion.a
-                        href={info.href}
-                        whileHover={{ color: "#f700ff7a" }}
-                        className="text-gray-300 transition-colors duration-300"
-                      >
-                        {info.content}
-                      </motion.a>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              className="bg-black p-6 rounded-xl red-border-glow hover:border-red-500 transition-all duration-300"
+        {/* ===== FORMULARIO DERECHO ===== */}
+        <motion.div
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : 40 }}
+          transition={{ duration: 0.8 }}
+          className="border border-white/10 rounded-2xl p-10 bg-white/5 backdrop-blur-md"
+        >
+          <h3 className="text-white text-xl mb-10 tracking-wide">
+            Envíame un mensaje
+          </h3>
+
+          <form ref={form} onSubmit={sendEmail} className="space-y-8">
+
+            {/* Nombre */}
+            <input
+              type="text"
+              name="user_name"
+              value={formData.user_name}
+              onChange={handleChange}
+              required
+              placeholder="Nombre completo"
+              className="w-full bg-transparent border-b border-white/20 pb-3 text-white placeholder-gray-500 focus:outline-none focus:border-white transition-colors"
+            />
+
+            {/* Email */}
+            <input
+              type="email"
+              name="user_email"
+              value={formData.user_email}
+              onChange={handleChange}
+              required
+              placeholder="Correo electrónico"
+              className="w-full bg-transparent border-b border-white/20 pb-3 text-white placeholder-gray-500 focus:outline-none focus:border-white transition-colors"
+            />
+
+            {/* Mensaje */}
+            <textarea
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              required
+              rows={4}
+              placeholder="Mensaje"
+              className="w-full bg-transparent border-b border-white/20 pb-3 text-white placeholder-gray-500 focus:outline-none focus:border-white transition-colors resize-none"
+            />
+
+            {/* Status */}
+            {status && (
+              <p className={`text-sm ${status.startsWith('Error') ? 'text-yellow-400' : 'text-white'}`}>
+                {status}
+              </p>
+            )}
+
+            {/* Botón minimal */}
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full border border-white/20 py-3 rounded-full text-white tracking-wide hover:bg-white hover:text-black transition-all duration-500 disabled:opacity-40"
             >
-              <h4 className="font-semibold text-white mb-4 font-heading">
-                ¿POR QUÉ TRABAJAR CONMIGO?
-              </h4>
-              <ul className="space-y-2 text-gray-300">
-                {[
-                  'Entrega puntual y calidad garantizada',
-                  'Comunicación clara y constante',
-                  'Soporte post-lanzamiento',
-                  'Tecnologías modernas y actualizadas'
-                ].map((item, i) => (
-                  <motion.li
-                    key={i}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -10 }}
-                    transition={{ delay: i * 0.1 }}
-                    whileHover={{ x: 5 }}
-                    className="flex items-center group"
-                  >
-                    <motion.div
-                      className="w-2 h-2 bg-red-500 rounded-full mr-3"
-                      whileHover={{ scale: 1.5 }}
-                    />
-                    {item}
-                  </motion.li>
-                ))}
-              </ul>
-            </motion.div>
-          </motion.div>
+              {isSubmitting ? 'Enviando...' : 'Enviar mensaje'}
+            </button>
 
+          </form>
+        </motion.div>
 
-          {/* === PANEL DE FORMULARIO (MODIFICADO) === */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : 50 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="bg-black p-8 rounded-xl red-border-glow fade-up"
-          >
-            <h3 className="text-2xl font-bold mb-6 text-red-500 font-heading">
-              ENVÍAME UN MENSAJE
-            </h3>
-            
-            {/* ELIMINAMOS ACTION Y METHOD, AÑADIMOS REF y ON SUBMIT */}
-            <form ref={form} onSubmit={sendEmail} className="space-y-6">
-              {/* ELIMINAMOS _captcha y _next, EmailJS gestiona la respuesta */}
-              
-              {/* === NUEVO CAMPO DE NOMBRE === */}
-              <motion.div
-                className="relative"
-                initial={{ opacity: 0, y: 10 }}
-                animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-                transition={{ delay: 0.5 }}
-              >
-                <motion.input
-                  type="text"
-                  name="user_name"
-                  value={formData.user_name}
-                  onChange={handleChange}
-                  required
-                  className="w-full bg-black/70 text-white px-4 py-3 rounded-lg form-glow transition-all duration-300 peer border border-gray-700 focus:border-red-500 focus:bg-black/90"
-                  placeholder=" "
-                  whileFocus={{ boxShadow: "0 0 20px rgba(255, 0, 60, 0.3)" }}
-                />
-                <label className="absolute left-4 top-3 text-gray-400 transition-all duration-300 peer-focus:-top-2 peer-focus:left-2 peer-focus:text-red-500 peer-focus:text-sm peer-focus:bg-black peer-focus:px-2 peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:left-2 peer-[:not(:placeholder-shown)]:text-red-500 peer-[:not(:placeholder-shown)]:text-sm peer-[:not(:placeholder-shown)]:bg-black peer-[:not(:placeholder-shown)]:px-2">
-                  Nombre completo
-                </label>
-              </motion.div>
-
-              {/* CAMPO DE CORREO (Cambia 'name' de 'email' a 'user_email') */}
-              <motion.div
-                className="relative"
-                initial={{ opacity: 0, y: 10 }}
-                animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-                transition={{ delay: 0.6 }}
-              >
-                <motion.input
-                  type="email"
-                  name="user_email"
-                  value={formData.user_email}
-                  onChange={handleChange}
-                  required
-                  className="w-full bg-black/70 text-white px-4 py-3 rounded-lg form-glow transition-all duration-300 peer border border-gray-700 focus:border-red-500 focus:bg-black/90"
-                  placeholder=" "
-                  whileFocus={{ boxShadow: "0 0 20px rgba(255, 0, 60, 0.3)" }}
-                />
-                <label className="absolute left-4 top-3 text-gray-400 transition-all duration-300 peer-focus:-top-2 peer-focus:left-2 peer-focus:text-red-500 peer-focus:text-sm peer-focus:bg-black peer-focus:px-2 peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:left-2 peer-[:not(:placeholder-shown)]:text-red-500 peer-[:not(:placeholder-shown)]:text-sm peer-[:not(:placeholder-shown)]:bg-black peer-[:not(:placeholder-shown)]:px-2">
-                  Correo electrónico
-                </label>
-              </motion.div>
-
-              {/* CAMPO DE MENSAJE */}
-              <motion.div
-                className="relative"
-                initial={{ opacity: 0, y: 10 }}
-                animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-                transition={{ delay: 0.7 }}
-              >
-                <motion.textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={5}
-                  className="w-full bg-black/70 text-white px-4 py-3 rounded-lg form-glow transition-all duration-300 peer resize-none border border-gray-700 focus:border-red-500 focus:bg-black/90"
-                  placeholder=" "
-                  whileFocus={{ boxShadow: "0 0 20px rgba(255, 0, 60, 0.3)" }}
-                />
-                <label className="absolute left-4 top-3 text-gray-400 transition-all duration-300 peer-focus:-top-2 peer-focus:left-2 peer-focus:text-red-500 peer-focus:text-sm peer-focus:bg-black peer-focus:px-2 peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:left-2 peer-[:not(:placeholder-shown)]:text-red-500 peer-[:not(:placeholder-shown)]:text-sm peer-[:not(:placeholder-shown)]:bg-black peer-[:not(:placeholder-shown)]:px-2">
-                  Mensaje
-                </label>
-              </motion.div>
-              
-              {/* INDICADOR DE ESTADO */}
-              {status && (
-                <motion.p
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className={`text-center font-semibold ${status.startsWith('Error') ? 'text-yellow-500' : 'text-red-500'}`}
-                >
-                  {status}
-                </motion.p>
-              )}
-
-              <motion.button
-                type="submit"
-                disabled={isSubmitting}
-                initial={{ opacity: 0, y: 10 }}
-                animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-                transition={{ delay: 0.8 }}
-                whileHover={!isSubmitting ? { scale: 1.02, boxShadow: "0 0 30px rgba(255, 0, 60, 0.5)" } : {}}
-                whileTap={!isSubmitting ? { scale: 0.98 } : {}}
-                className="w-full bg-gradient-to-r from-red-600 to-red-800 text-white py-3 px-6 rounded-lg font-semibold hover:from-red-700 hover:to-red-900 transition-all duration-300 button-scale flex items-center justify-center space-x-2 font-heading pulse-red disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                <motion.div
-                  animate={isSubmitting ? { rotate: 360 } : {}}
-                  transition={{ duration: 1, repeat: Infinity }}
-                >
-                  <Send size={20} />
-                </motion.div>
-                <span>{isSubmitting ? 'ENVIANDO...' : 'ENVIAR MENSAJE'}</span>
-              </motion.button>
-            </form>
-          </motion.div>
-        </div>
       </div>
-    </section>
-  );
+    </div>
+  </section>
+  
+
+);
+
+
 };
 
 export default Contact;

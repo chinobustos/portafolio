@@ -40,43 +40,16 @@ const About = () => {
     { name: 'Git', icon: Globe, color: 'text-red-600' },
   ];
 
-  const cards = [
-    {
-      icon: GraduationCap,
-      title: 'Educación',
-      content: 'Licenciatura en Sistemas de Información\nUniversidad Champagnat',
-      color: 'from-red-600 to-red-800'
-    },
-    {
-      icon: Briefcase,
-      title: 'Experiencia',
-      content: '3+ años desarrollando\nsoluciones web innovadoras',
-      color: 'from-red-500 to-red-700'
-    },
-    {
-      icon: Languages,
-      title: 'Idiomas',
-      content: 'Español (Nativo)\nInglés (basico)',
-      color: 'from-red-700 to-red-900'
-    },
-  ];
+ 
 
   return (
    <section
   id="about"
-  className="relative snap-start min-h-screen py-20 bg-black overflow-hidden"
+  className="snap-start min-h-screen py-20 bg-black"
 >
-  {/* Imagen de fondo lado izquierdo */}
-  <img
-  src={profileImg}
-  alt="Background"
-  className="absolute left-0 top-1/2 -translate-y-1/2 h-[44%] object-contain opacity-100 pointer-events-none"
-  />
-
-  {/* Degradado para que el texto sea legible */}
-  <div className="absolute inset-0 bg-gradient-to-r from-black via-black/20 black" />
-
-  <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    {/* Header */}
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 30 }}
@@ -86,6 +59,7 @@ const About = () => {
       <h2 className="text-5xl md:text-6xl font-bold mb-6 gradient-text font-heading">
         SOBRE MÍ
       </h2>
+
       <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
         Apasionado por crear experiencias digitales. Especializado en el desarrollo moderno
         con enfoque en la experiencia del usuario.
@@ -103,29 +77,54 @@ const About = () => {
       </motion.a>
     </motion.div>
 
-    {/* 🔥 Dejamos tu grid exactamente igual pero eliminamos el círculo */}
-    <div className="grid lg:grid-cols-2 gap-12 items-center">
-      
-      {/* Espacio vacío para mantener estructura */}
-      <div className="hidden lg:block" />
+    {/* 🔥 Layout Responsive */}
+    <div className="flex flex-col-reverse lg:flex-row items-center gap-12">
 
+      {/* 🔥 Imagen */}
+      <motion.div
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -50 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="w-full lg:w-1/2 flex justify-center"
+      >
+        <img
+          src={profileImg}
+          alt="Ivan Bustos"
+          className="
+            w-56 sm:w-64 md:w-72 
+            lg:w-[700px]
+            object-contain
+            opacity-90
+          "
+        />
+      </motion.div>
+
+      {/* 🔥 Contenido */}
       <motion.div
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : 50 }}
         transition={{ duration: 0.8, delay: 0.4 }}
-        className="space-y-8"
+        className="w-full lg:w-1/2 space-y-8"
       >
         <div>
           <h3 className="text-2xl font-light mb-4 text-red-500 font-heading">
             TECNOLOGÍAS QUE DOMINO
           </h3>
+
           <div className="grid grid-cols-3 gap-4">
             {technologies.map((tech, index) => (
               <motion.div
                 key={tech.name}
                 initial={{ opacity: 0, y: 20, scale: 0.8 }}
-                animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20, scale: isVisible ? 1 : 0.8 }}
-                transition={{ duration: 0.6, delay: 0.6 + index * 0.08 }}
+                animate={{
+                  opacity: isVisible ? 1 : 0,
+                  y: isVisible ? 0 : 20,
+                  scale: isVisible ? 1 : 0.8
+                }}
+                transition={{
+                  duration: 0.6,
+                  delay: 0.6 + index * 0.08
+                }}
                 whileHover={{
                   y: -8,
                   scale: 1.05,
@@ -142,37 +141,10 @@ const About = () => {
           </div>
         </div>
 
-        <div className="grid gap-6">
-          {cards.map((card, index) => (
-            <motion.div
-              key={card.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 30 }}
-              transition={{ duration: 0.7, delay: 0.8 + index * 0.2 }}
-              whileHover={{
-                y: -8,
-                boxShadow: "0 20px 40px rgba(255, 0, 60, 0.15)"
-              }}
-              className="bg-gradient-to-br from-gray-900 to-black p-6 rounded-lg border border-gray-800 hover:border-red-600/50 transition-all duration-300"
-            >
-              <div className="flex items-center mb-4">
-                <motion.div
-                  className={`p-3 rounded-full bg-gradient-to-r ${card.color} mr-4`}
-                >
-                  <card.icon className="w-6 h-6 text-white" />
-                </motion.div>
-                <h4 className="text-xl font-bold text-white font-heading">
-                  {card.title}
-                </h4>
-              </div>
-              <p className="text-gray-300 whitespace-pre-line">
-                {card.content}
-              </p>
-            </motion.div>
-          ))}
-        </div>
+       
       </motion.div>
     </div>
+
   </div>
 </section>
   );

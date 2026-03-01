@@ -50,7 +50,7 @@ const Services = () => {
     { icon: Code, title: 'Desarrollo Frontend', percentage: 100 },
     { icon: Palette, title: 'Diseño UI/UX', percentage: 90 },
     { icon: Globe, title: 'Sitios Web', percentage: 90 },
-    { icon: Zap, title: 'Optimización', percentage: 8 },
+    { icon: Zap, title: 'Optimización', percentage: 80 },
     { icon: Users, title: 'Metodologías Ágiles', percentage: 92 }
   ];
 
@@ -73,6 +73,7 @@ const Services = () => {
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 auto-rows-[180px]">
           {services.map((service, index) => {
+
             const spanClasses = [
               'row-span-2 col-span-2 lg:col-span-2',
               '',
@@ -82,6 +83,7 @@ const Services = () => {
             ];
 
             const isFrontend = index === 0;
+            const isWebsite = service.title === 'Sitios Web';
 
             return (
               <motion.div
@@ -90,17 +92,23 @@ const Services = () => {
                 animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 40 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ scale: 1.02 }}
-                className={`relative p-8 rounded-[32px] backdrop-blur-xl border border-white/10 shadow-2xl shadow-black/40 transition duration-300 flex flex-col justify-between overflow-hidden ${
-                  isFrontend ? 'bg-white/5' : 'bg-white/5'
-                } ${spanClasses[index]}`}
+                className={`relative p-8 rounded-[32px] backdrop-blur-xl 
+                  ${isWebsite 
+                    ? 'border-2 border-emerald-400 shadow-[0_0_25px_rgba(16,185,129,0.4)]' 
+                    : 'border border-white/10'}
+                  shadow-2xl shadow-black/40 transition duration-300 
+                  flex flex-col justify-between overflow-hidden 
+                  bg-white/5
+                  ${spanClasses[index]}`}
               >
-                {/* Honey Flower Background SOLO para Frontend */}
+                {/* Gradiente especial solo para Frontend */}
                 {isFrontend && (
                   <div className="absolute inset-0 bg-gradient-to-br from-[#A435F0]/40 via-[#7B2CBF]/30 to-transparent" />
                 )}
 
                 <div className="relative z-10">
                   <service.icon className={`w-6 h-6 mb-6 ${isFrontend ? 'text-white' : 'text-zinc-300'}`} />
+                  
                   <h3 className="text-sm text-zinc-400 mb-2 tracking-wide">
                     {service.title}
                   </h3>
@@ -118,6 +126,7 @@ const Services = () => {
                       '0%'
                     )}
                   </div>
+
                   <p className="text-xs text-zinc-500 mt-1">
                     Nivel de experiencia
                   </p>
