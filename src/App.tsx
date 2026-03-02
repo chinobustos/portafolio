@@ -6,6 +6,8 @@ import Projects from './components/Projects';
 import Services from './components/Services';
 import Contact from './components/Contact';
 import Navigation from './components/Navigation';
+import Timeline from './components/Timeline';
+import BrandStatement from "./components/BrandStatement";
 
 import './App.css';
 import './index.css';
@@ -19,9 +21,11 @@ function App() {
       <Navigation />
       <Hero />
       <About />
+      <BrandStatement />
       <Scalability />
       <Projects />
       <Services />
+      <Timeline />
       <Contact />
 
     </div>
