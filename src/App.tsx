@@ -8,6 +8,7 @@ import Contact from './components/Contact';
 import Navigation from './components/Navigation';
 import Timeline from './components/Timeline';
 import BrandStatement from "./components/BrandStatement";
+import  Footer  from './components/Footer';
 
 import './App.css';
 import './index.css';
@@ -21,12 +22,13 @@ function App() {
       <Navigation />
       <Hero />
       <About />
-      <BrandStatement />
       <Scalability />
+      <BrandStatement />
       <Projects />
       <Services />
       <Timeline />
       <Contact />
+      <Footer/>
 
     </div>
   );
