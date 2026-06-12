@@ -8,14 +8,14 @@ const ParticlesBg = () => {
   }, []);
 
   const options = {
-    fpsLimit: 60,
+    fpsLimit: 30,
     particles: {
-      number: { value: 40, density: { enable: true, area: 800 } },
+      number: { value: 15, density: { enable: true, area: 800 } },
       color: { value: '#ffffff' },
       shape: { type: 'circle' },
       opacity: { value: 0.12 },
       size: { value: { min: 1, max: 4 } },
-      links: { enable: true, distance: 150, color: '#ffffff', opacity: 0.08, width: 1 },
+      links: { enable: false, distance: 150, color: '#ffffff', opacity: 0.08, width: 1 },
       move: { enable: true, speed: 0.6, direction: 'none', outModes: { default: 'out' } }
     },
     interactivity: {

@@ -15,7 +15,7 @@ const projects = [
     description:
       "Gestión de Membresías y Dashboard Analítico con control automático de vencimientos (lógica asíncrona) y visualización de KPIs en tiempo real.",
     image:
-      "/dashboard.png"
+      "/gym.png"
   }
 ];
 
