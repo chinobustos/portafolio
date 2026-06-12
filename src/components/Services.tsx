@@ -134,7 +134,7 @@ const Services = () => {
 /* =========================
    SERVICE CARD
 ========================= */
-const ServiceCard = ({ service, index }: { service: { icon: any; title: string; percentage: number }; index: number }) => {
+const ServiceCard = ({ service, index }: { service: { icon: React.ElementType; title: string; percentage: number }; index: number }) => {
   const [started, setStarted] = useState(false);
 
   const spanClasses = [

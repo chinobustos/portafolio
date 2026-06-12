@@ -1,34 +1,7 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { motion, useViewportScroll, useTransform, useInView } from 'framer-motion';
 
-const PercentageCounterScalability = ({ value, delay }) => {
-  const [count, setCount] = useState(0);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      let start = 0;
-      const end = value;
-      const duration = 2000;
-      const increment = end / (duration / 16);
-      
-      const interval = setInterval(() => {
-        start += increment;
-        if (start >= end) {
-          setCount(end);
-          clearInterval(interval);
-        } else {
-          setCount(Math.floor(start));
-        }
-      }, 16);
-
-      return () => clearInterval(interval);
-    }, delay);
-
-    return () => clearTimeout(timer);
-  }, [value, delay]);
-
-  return <>{count}</>;
-};
 
 const Scalability = () => {
   
@@ -61,8 +34,8 @@ const Scalability = () => {
 
   useEffect(() => {
     const wordElements = document.querySelectorAll('.word-animate');
-    const handleMouseEnter = (e: any) => { if (e.target) e.target.style.textShadow = '0 0 20px rgba(203, 213, 225, 0.5)'; };
-    const handleMouseLeave = (e: any) => { if (e.target) e.target.style.textShadow = 'none'; };
+    const handleMouseEnter = (e: MouseEvent) => { if (e.target) (e.target as HTMLElement).style.textShadow = '0 0 20px rgba(203, 213, 225, 0.5)'; };
+    const handleMouseLeave = (e: MouseEvent) => { if (e.target) (e.target as HTMLElement).style.textShadow = 'none'; };
     wordElements.forEach(word => {
       word.addEventListener('mouseenter', handleMouseEnter);
       word.addEventListener('mouseleave', handleMouseLeave);

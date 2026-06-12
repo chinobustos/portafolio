@@ -214,7 +214,7 @@ const ShaderBackground = () => {
     
     resizeCanvas();
 
-    let startTime = Date.now();
+    const startTime = Date.now();
     let animationFrameId: number;
     
     const render = () => {
@@ -250,6 +250,7 @@ const ShaderBackground = () => {
       window.removeEventListener('resize', resizeCanvas);
       resizeObserver.disconnect();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

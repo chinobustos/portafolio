@@ -3,7 +3,7 @@ import Particles from 'react-tsparticles';
 import { loadFull } from 'tsparticles';
 
 const ParticlesBg = () => {
-  const particlesInit = useCallback(async (engine: any) => {
+  const particlesInit = useCallback(async (engine: unknown) => {
     await loadFull(engine);
   }, []);
 
