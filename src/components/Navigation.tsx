@@ -55,7 +55,7 @@ const Navigation = () => {
       initial="hidden"
       animate="visible"
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? 'bg-black/95 backdrop-blur-md shadow-lg red-border-glow' : 'bg-transparent'
+        scrolled ? 'glass-dark' : 'bg-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -107,7 +107,7 @@ const Navigation = () => {
         transition={{ duration: 0.3 }}
         className="md:hidden overflow-hidden"
       >
-        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-black/95 backdrop-blur-md red-border-glow">
+        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 glass-dark">
           {navItems.map((item, i) => (
             <motion.a
               key={item.name}

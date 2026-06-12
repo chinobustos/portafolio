@@ -3,6 +3,7 @@ import emailjs from '@emailjs/browser';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin } from 'lucide-react';
 
+
 const SERVICE_ID = 'service_u96zquo';
 const TEMPLATE_ID = 'template_hbfysup';
 const PUBLIC_KEY = 'vKPTqDVhBpp1PF0vH';
@@ -144,7 +145,7 @@ const Contact = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false, amount: 0.1 }}
             transition={{ duration: 0.8 }}
-            className="relative border border-white/10 rounded-2xl p-10 bg-white/5 backdrop-blur-md overflow-hidden"
+            className="glass-dark p-10 relative rounded-2xl overflow-hidden"
           >
             {/* Glow animado */}
             <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-cyan-500/20 via-purple-500/20 to-pink-500/20 blur-2xl opacity-40 animate-pulse pointer-events-none"></div>
@@ -203,7 +204,7 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full border border-white/20 py-3 rounded-full text-white tracking-wide hover:bg-white hover:text-black hover:shadow-[0_0_25px_rgba(255,255,255,0.4)] transition-all duration-500 disabled:opacity-40"
+                className="w-full glass-button-dark py-3 rounded-full text-white tracking-wide transition-all duration-500 disabled:opacity-40"
               >
                 {isSubmitting ? 'Enviando...' : 'Enviar mensaje'}
               </button>

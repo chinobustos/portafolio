@@ -74,7 +74,7 @@ const Hero = () => {
             href="https://github.com/chinobustos"
             target="_blank"
             rel="noopener noreferrer"
-            className="p-3 sm:p-4 rounded-full bg-black/70 hover:bg-red-600 transition-colors duration-300 border border-red-600/20 hover:border-red-500"
+            className="p-3 sm:p-4 rounded-full glass-button-dark text-white hover:text-red-500"
           >
             <Github size={20} />
           </a>
@@ -83,7 +83,7 @@ const Hero = () => {
             href="https://www.linkedin.com/in/ivan-bustosdev"
             target="_blank"
             rel="noopener noreferrer"
-            className="p-3 sm:p-4 rounded-full bg-black/70 hover:bg-red-600 transition-colors duration-300 border border-red-600/20 hover:border-red-500"
+            className="p-3 sm:p-4 rounded-full glass-button-dark text-white hover:text-red-500"
           >
             <Linkedin size={20} />
           </a>

@@ -134,7 +134,7 @@ const Services = () => {
 /* =========================
    SERVICE CARD
 ========================= */
-const ServiceCard = ({ service, index }: { service: any; index: number }) => {
+const ServiceCard = ({ service, index }: { service: { icon: any; title: string; percentage: number }; index: number }) => {
   const [started, setStarted] = useState(false);
 
   const spanClasses = [
@@ -155,10 +155,7 @@ const ServiceCard = ({ service, index }: { service: any; index: number }) => {
       transition={{ duration: 0.6, delay: index * 0.1 }}
       whileHover={{ scale: 1.02 }}
       className={`
-        relative p-8 rounded-[32px] backdrop-blur-xl
-        border border-white/10
-        shadow-2xl shadow-black/40
-        bg-white/5
+        glass-dark p-8 relative rounded-[32px]
         flex flex-col items-center justify-center
         overflow-hidden
         ${spanClasses[index]}

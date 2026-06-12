@@ -70,9 +70,8 @@ const ProcessTimeline = () => {
                   {/* Contenido */}
                   <div
                     className={`
-                      bg-white/5 backdrop-blur-xl border border-white/10
+                      glass-dark
                       rounded-2xl p-6 w-full md:w-[45%]
-                      shadow-2xl shadow-black/40
                       ${isLeft ? "md:mr-auto" : "md:ml-auto"}
                     `}
                   >

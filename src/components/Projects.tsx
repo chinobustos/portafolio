@@ -4,25 +4,18 @@ import { ExternalLink, Github } from "lucide-react";
 
 const projects = [
   {
-    title: "E-Commerce Infrastructure",
+    title: "Nexus",
     description:
-      "Arquitectura moderna enfocada en escalabilidad, performance y experiencia de usuario optimizada.",
+      "Plataforma integral bajo el modelo Software as a Service (SaaS) orientada a la administración centralizada de clientes, contratos y flujos de trabajo para freelancers y empresas de desarrollo.",
     image:
-      "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=1600"
+      "/dashboard.png"
   },
   {
-    title: "Mobile SaaS Platform",
+    title: "GymOS",
     description:
-      "Aplicación mobile con animaciones fluidas, diseño sistémico y rendimiento de nivel producto.",
+      "Gestión de Membresías y Dashboard Analítico con control automático de vencimientos (lógica asíncrona) y visualización de KPIs en tiempo real.",
     image:
-      "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1600"
-  },
-  {
-    title: "Corporate Digital System",
-    description:
-      "Sistema corporativo con microinteracciones avanzadas y arquitectura modular escalable.",
-    image:
-      "https://images.pexels.com/photos/326508/pexels-photo-326508.jpeg?auto=compress&cs=tinysrgb&w=1600"
+      "/dashboard.png"
   }
 ];
 
@@ -79,13 +72,15 @@ const Projects = () => {
                 }}
                 transition={{ duration: 1, ease: "easeOut" }}
                 viewport={{ once: true, amount: 0.3 }}
-                className={`relative rounded-2xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-xl shadow-[0_0_60px_rgba(0,0,0,0.5)] ${
+                className={`glass-dark relative rounded-2xl overflow-hidden ${
                   isEven ? "order-1" : "order-1 md:order-2"
                 }`}
               >
                 <img
                   src={project.image}
-                  alt={project.title}
+                  alt={`Proyecto ${project.title}`}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-[420px] object-cover scale-105"
                 />
               </motion.div>
@@ -121,7 +116,7 @@ const Projects = () => {
                 <div className="flex gap-6">
                   <a
                     href="#"
-                    className="flex items-center gap-3 text-white border border-white/20 px-6 py-3 rounded-lg hover:bg-white/5 transition"
+                    className="flex items-center gap-3 text-white glass-button-dark px-6 py-3 rounded-lg"
                   >
                     <ExternalLink size={18} />
                     Live Preview

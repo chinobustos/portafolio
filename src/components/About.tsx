@@ -41,7 +41,7 @@ const About = () => {
           </p>
 
           <motion.a
-            href="/Ivan-Bustos-CV.pdf"
+            href="/CV_Ivan_Bustos.pdf"
             download
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -66,6 +66,8 @@ const About = () => {
             <img
               src={profileImg}
               alt="Ivan Bustos"
+              loading="lazy"
+              decoding="async"
               className="
                 w-full
                 max-w-[380px]
@@ -104,7 +106,7 @@ const About = () => {
                     y: -6,
                     scale: 1.05,
                   }}
-                  className="bg-gradient-to-br from-gray-900 to-black p-4 rounded-lg border border-gray-800 hover:border-red-600/50 transition-all duration-300 text-center"
+                  className="glass-dark p-4 rounded-lg hover:border-red-600/50 transition-all duration-300 text-center"
                 >
                   <tech.icon
                     className={`w-7 h-7 mx-auto mb-2 ${tech.color}`}

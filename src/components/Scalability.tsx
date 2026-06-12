@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { motion, useViewportScroll, useTransform } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
+import { motion, useViewportScroll, useTransform, useInView } from 'framer-motion';
 
 const PercentageCounterScalability = ({ value, delay }) => {
   const [count, setCount] = useState(0);
@@ -34,28 +34,95 @@ const Scalability = () => {
   
   const { scrollY } = useViewportScroll();
   const textY = useTransform(scrollY, [0, 500], [50, -50]);
+  const textRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(textRef, { once: false, amount: 0.1 });
 
+  useEffect(() => {
+    if (isInView) {
+      const wordElements = textRef.current?.querySelectorAll('.word-animate');
+      wordElements?.forEach((word) => {
+        const delay = parseInt(word.getAttribute('data-delay') || '0') || 0;
+        setTimeout(() => {
+          if (word) {
+            (word as HTMLElement).style.animation = 'word-appear 0.8s ease-out forwards';
+          }
+        }, delay);
+      });
+    } else {
+      const wordElements = textRef.current?.querySelectorAll('.word-animate');
+      wordElements?.forEach((word) => {
+        if (word) {
+          (word as HTMLElement).style.animation = 'none';
+          (word as HTMLElement).style.opacity = '0';
+        }
+      });
+    }
+  }, [isInView]);
 
-  // Animaciones controladas por Framer Motion `whileInView` (viewport once: false)
+  useEffect(() => {
+    const wordElements = document.querySelectorAll('.word-animate');
+    const handleMouseEnter = (e: any) => { if (e.target) e.target.style.textShadow = '0 0 20px rgba(203, 213, 225, 0.5)'; };
+    const handleMouseLeave = (e: any) => { if (e.target) e.target.style.textShadow = 'none'; };
+    wordElements.forEach(word => {
+      word.addEventListener('mouseenter', handleMouseEnter);
+      word.addEventListener('mouseleave', handleMouseLeave);
+    });
+    return () => {
+      wordElements.forEach(word => {
+        if (word) {
+          word.removeEventListener('mouseenter', handleMouseEnter);
+          word.removeEventListener('mouseleave', handleMouseLeave);
+        }
+      });
+    };
+  }, []);
+
+  const pageStyles = `
+    @keyframes word-appear { 
+      0% { opacity: 0; transform: translateY(30px) scale(0.8); filter: blur(10px); } 
+      50% { opacity: 0.8; transform: translateY(10px) scale(0.95); filter: blur(2px); } 
+      100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); } 
+    }
+    .word-animate { 
+      display: inline-block; 
+      opacity: 0; 
+      margin: 0 0.1em; 
+      transition: color 0.3s ease, transform 0.3s ease; 
+    }
+    .word-animate:hover { 
+      transform: translateY(-2px); 
+    }
+  `;
+
+  // Animaciones controladas por Framer Motion \`whileInView\` (viewport once: false)
 
   return (
     <section id="scalability" className="snap-start min-h-screen w-full bg-gradient-to-b from-black to-gray-900 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-20">
+      <style>{pageStyles}</style>
       <div className="w-full max-w-7xl relative">
         {/* Text Content */}
         <motion.div
+          ref={textRef}
           style={{ y: textY }}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.1 }}
-            transition={{ duration: 0.8 }}
           className="relative z-10 text-center mb-12"
         >
               <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light mb-6 leading-tight">
-                <span className="text-white">Construye tu negocio </span>
-                <span className="text-green-400">100% escalable</span>
+                <span className="word-animate text-white" data-delay="0">Construye</span>
+                <span className="word-animate text-white" data-delay="150">tu</span>
+                <span className="word-animate text-white" data-delay="300">negocio</span>
+                <br className="hidden sm:block" />
+                <span className="word-animate text-green-400 font-medium" data-delay="450">100%</span>
+                <span className="word-animate text-green-400 font-medium" data-delay="600">escalable</span>
               </h2>
               <p className="text-xl sm:text-2xl md:text-3xl text-gray-300">
-                Soluciones web que crecen junto con tu empresa
+                <span className="word-animate" data-delay="750">Soluciones</span>
+                <span className="word-animate" data-delay="900">web</span>
+                <span className="word-animate" data-delay="1050">que</span>
+                <span className="word-animate" data-delay="1200">crecen</span>
+                <span className="word-animate" data-delay="1350">junto</span>
+                <span className="word-animate" data-delay="1500">con</span>
+                <span className="word-animate" data-delay="1650">tu</span>
+                <span className="word-animate" data-delay="1800">empresa</span>
               </p>
             </motion.div>
 
