@@ -11,7 +11,7 @@ const projects = [
       "/dashboard.png"
   },
   {
-    title: "GymOS",
+    title: "SmartCore Gym",
     description:
       "Gestión de Membresías y Dashboard Analítico con control automático de vencimientos (lógica asíncrona) y visualización de KPIs en tiempo real.",
     image:

@@ -5,16 +5,14 @@ import profileImg from "../assets/profile.png";
 const About = () => {
   const technologies = [
     { name: "HTML5", icon: Code, color: "text-red-400" },
-    { name: "Tailwind CSS", icon: Palette, color: "text-red-600" },
-    { name: "TypeScript", icon: Code, color: "text-red-500" },
-    { name: "MySQL", icon: Globe, color: "text-red-700" },
-    { name: "Supabase", icon: Globe, color: "text-red-600" },
-    { name: "Spring Boot", icon: Code, color: "text-red-800" },
-    { name: "SQLite", icon: Globe, color: "text-red-500" },
-    { name: "Java", icon: Code, color: "text-red-700" },
-    { name: "CSS3", icon: Palette, color: "text-red-500" },
+    { name: "Next.js", icon: Code, color: "text-red-500" },
     { name: "JavaScript", icon: Code, color: "text-red-600" },
+    { name: "TypeScript", icon: Code, color: "text-red-500" },
     { name: "React", icon: Code, color: "text-red-400" },
+    { name: "PostgreSQL", icon: Globe, color: "text-red-700" },
+    { name: "Supabase", icon: Globe, color: "text-red-600" },
+    { name: "Tailwind CSS", icon: Palette, color: "text-red-600" },
+    { name: "CSS3", icon: Palette, color: "text-red-500" },
     { name: "Figma", icon: Palette, color: "text-red-500" },
     { name: "Git", icon: Globe, color: "text-red-600" },
   ];
@@ -42,10 +40,12 @@ const About = () => {
 
           <motion.a
             href="/CV_Ivan_Bustos.pdf"
-            download
+            download="CV_Ivan_Bustos.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-red-600 to-red-800 text-white rounded-lg font-semibold hover:from-red-700 hover:to-red-900 transition-all duration-300"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-red-600 to-red-800 text-white rounded-lg font-semibold hover:from-red-700 hover:to-red-900 transition-all duration-300 cursor-pointer"
           >
             <Download size={20} />
             DESCARGAR CV

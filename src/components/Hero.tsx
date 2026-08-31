@@ -50,7 +50,7 @@ const Hero = () => {
           transition={{ delay: 0.2, duration: 0.8 }}
           className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-light mb-4 text-gray-200"
         >
-          WEB DEVELOPER / DESIGNER
+          FRONTEND DEVELOPER & UX/UI DESIGNER
         </motion.h2>
 
         <motion.p
