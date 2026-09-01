@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Montserrat:wght@300;400;500;600;700&display=swap');
 
 * {
   margin: 0;
@@ -71,7 +70,10 @@ body {
 }
 
 .card-hover {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
   border: 1px solid rgba(255, 0, 60, 0.1);
 }
 
@@ -110,7 +112,7 @@ body {
 .scroll-reveal {
   opacity: 0;
   transform: translateY(60px);
-  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .scroll-reveal.revealed {
@@ -128,7 +130,7 @@ body {
 .form-glow {
   border: 1px solid rgba(255, 0, 60, 0.3);
   box-shadow: 0 0 15px rgba(255, 0, 60, 0.1);
-  transition: all 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .form-glow:focus {
@@ -138,7 +140,8 @@ body {
 }
 
 .button-scale {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .button-scale:hover {

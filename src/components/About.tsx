@@ -66,6 +66,8 @@ const About = () => {
             <img
               src={profileImg}
               alt="Ivan Bustos"
+              width={1200}
+              height={810}
               loading="lazy"
               decoding="async"
               className="

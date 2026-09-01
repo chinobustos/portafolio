@@ -13,17 +13,18 @@ export const ContainerScroll = ({
   const { scrollYProgress } = useScroll({
     target: containerRef,
   });
-  const [isMobile, setIsMobile] = React.useState(false);
+  // `matchMedia` sólo notifica al cruzar el breakpoint; el listener de `resize`
+  // anterior disparaba un setState en cada píxel redimensionado.
+  const [isMobile, setIsMobile] = React.useState(
+    () => typeof window !== "undefined" && window.innerWidth <= 768
+  );
 
   React.useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => {
-      window.removeEventListener("resize", checkMobile);
-    };
+    const mql = window.matchMedia("(max-width: 768px)");
+    const onChange = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    setIsMobile(mql.matches);
+    mql.addEventListener("change", onChange);
+    return () => mql.removeEventListener("change", onChange);
   }, []);
 
   const scaleDimensions = () => {
@@ -59,6 +60,7 @@ export const Header = ({ translate, titleComponent }: { translate: MotionValue<n
     <motion.div
       style={{
         translateY: translate,
+        willChange: "transform",
       }}
       className="div max-w-5xl mx-auto text-center"
     >
@@ -82,6 +84,7 @@ export const Card = ({
       style={{
         rotateX: rotate,
         scale,
+        willChange: "transform",
         boxShadow:
           "0 0 #0000004d, 0 9px 20px #0000004a, 0 37px 37px #00000042, 0 84px 50px #00000026, 0 149px 60px #0000000a, 0 233px 65px #00000003",
       }}

@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className="relative min-h-screen bg-black text-white snap-start overflow-hidden flex flex-col justify-between px-8 md:px-16 py-16">
+    <footer className="cv-section relative min-h-screen bg-black text-white overflow-hidden flex flex-col justify-between px-8 md:px-16 py-16">
       {/* ===== TOP SECTION ===== */}
       <div className="flex flex-col lg:flex-row justify-between gap-16">
         {/* Left Big Title */}

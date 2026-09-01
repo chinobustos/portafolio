@@ -1,37 +1,46 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Code, Palette, Globe, Zap, Users } from 'lucide-react';
 
 /* =========================
    CONTADOR ANIMADO
 ========================= */
+/**
+ * Antes usaba `setInterval` a 16 ms con `setState`: cinco tarjetas visibles
+ * significaban ~300 re-renders de React por segundo, justo mientras se hacía
+ * scroll. Ahora la cuenta va en un `requestAnimationFrame` que escribe el texto
+ * directo en el DOM, así que React no vuelve a renderizar ni una vez.
+ */
 const PercentageCounter = ({ value, delay }: { value: number; delay: number }) => {
-  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      let start = 0;
-      const end = value;
-      const duration = 2000;
-      const increment = end / (duration / 16);
+    const duration = 2000;
+    let rafId = 0;
+    let startTime = 0;
 
-      const interval = setInterval(() => {
-        start += increment;
-        if (start >= end) {
-          setCount(end);
-          clearInterval(interval);
-        } else {
-          setCount(Math.floor(start));
-        }
-      }, 16);
+    const tick = (now: number) => {
+      if (!startTime) startTime = now;
+      const progress = Math.min((now - startTime) / duration, 1);
+      if (ref.current) {
+        ref.current.textContent = String(Math.floor(progress * value));
+      }
+      if (progress < 1) {
+        rafId = requestAnimationFrame(tick);
+      }
+    };
 
-      return () => clearInterval(interval);
+    const timer = window.setTimeout(() => {
+      rafId = requestAnimationFrame(tick);
     }, delay);
 
-    return () => clearTimeout(timer);
+    return () => {
+      window.clearTimeout(timer);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, [value, delay]);
 
-  return <>{count}</>;
+  return <span ref={ref}>0</span>;
 };
 
 /* =========================
@@ -40,11 +49,13 @@ const PercentageCounter = ({ value, delay }: { value: number; delay: number }) =
 const ProgressRing = ({
   percentage,
   size = 140,
-  stroke = 10
+  stroke = 10,
+  gradientId
 }: {
   percentage: number;
   size?: number;
   stroke?: number;
+  gradientId: string;
 }) => {
   const radius = (size - stroke) / 2;
   const circumference = 2 * Math.PI * radius;
@@ -62,7 +73,7 @@ const ProgressRing = ({
       />
 
       <motion.circle
-        stroke="url(#gradient)"
+        stroke={`url(#${gradientId})`}
         fill="transparent"
         strokeWidth={stroke}
         strokeLinecap="round"
@@ -76,7 +87,7 @@ const ProgressRing = ({
       />
 
       <defs>
-        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#22d3ee" />
           <stop offset="100%" stopColor="#a855f7" />
         </linearGradient>
@@ -172,6 +183,7 @@ const ServiceCard = ({ service, index }: { service: { icon: React.ElementType; t
           <ProgressRing
             percentage={service.percentage}
             size={140}
+            gradientId={`service-ring-gradient-${index}`}
           />
         )}
 

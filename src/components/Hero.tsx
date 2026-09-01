@@ -1,18 +1,23 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Github, Linkedin, ChevronDown } from "lucide-react";
 import backHero from "../assets/back_hero.png";
 
+const fullText = "Creando experiencias digitales extraordinarias";
+
 const Hero = () => {
-  const [text, setText] = useState("");
-  const fullText = "Creando experiencias digitales extraordinarias";
+  const typedRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
+    // Se escribe directo en el DOM en lugar de con setState: el efecto de tipeo
+    // provocaba ~45 re-renders de todo el Hero justo durante la carga inicial.
     let currentIndex = 0;
 
     const typingInterval = setInterval(() => {
       if (currentIndex <= fullText.length) {
-        setText(fullText.slice(0, currentIndex));
+        if (typedRef.current) {
+          typedRef.current.textContent = fullText.slice(0, currentIndex);
+        }
         currentIndex++;
       } else {
         clearInterval(typingInterval);
@@ -24,10 +29,15 @@ const Hero = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
-      {/* Background */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(${backHero})` }}
+      {/* Background: <img> en vez de background-image para que el navegador lo
+          descubra en el HTML inicial y lo priorice (es el elemento LCP). */}
+      <img
+        src={backHero}
+        alt=""
+        aria-hidden="true"
+        fetchPriority="high"
+        decoding="async"
+        className="absolute inset-0 w-full h-full object-cover object-center"
       />
 
       {/* Overlay */}
@@ -64,7 +74,7 @@ const Hero = () => {
 
         <div className="h-6 sm:h-8 mb-8">
           <p className="text-sm sm:text-base md:text-lg text-gray-300">
-            {text}
+            <span ref={typedRef} />
             <span className="animate-pulse text-red-500">|</span>
           </p>
         </div>

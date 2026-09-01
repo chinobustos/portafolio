@@ -1,4 +1,3 @@
-import React from "react";
 import { SplineScene } from "./ui/splite";
 import { ContainerScroll } from "./ui/container-scroll-animation";
 

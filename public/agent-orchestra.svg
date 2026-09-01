@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800" role="img" aria-label="agent-orchestra: terminal ejecutando un workflow que orquesta varios proveedores de IA">
+  <defs>
+    <linearGradient id="ao-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0A0A0F"/>
+      <stop offset="55%" stop-color="#0B0D18"/>
+      <stop offset="100%" stop-color="#080810"/>
+    </linearGradient>
+
+    <radialGradient id="ao-glow" cx="0.74" cy="0.48" r="0.52">
+      <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.30"/>
+      <stop offset="55%" stop-color="#3b82f6" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="ao-core" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#22d3ee"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+
+    <linearGradient id="ao-term-bar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#15161d"/>
+      <stop offset="100%" stop-color="#101119"/>
+    </linearGradient>
+
+    <pattern id="ao-grid" width="40" height="40" patternUnits="userSpaceOnUse" patternTransform="rotate(35)">
+      <line x1="0" y1="0" x2="0" y2="40" stroke="#ffffff" stroke-opacity="0.028" stroke-width="1"/>
+    </pattern>
+
+    <filter id="ao-soft" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+
+    <filter id="ao-shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="18" stdDeviation="26" flood-color="#000000" flood-opacity="0.65"/>
+    </filter>
+  </defs>
+
+  <!-- Fondo -->
+  <rect width="1200" height="800" fill="url(#ao-bg)"/>
+  <rect width="1200" height="800" fill="url(#ao-grid)"/>
+  <rect width="1200" height="800" fill="url(#ao-glow)"/>
+
+  <!-- ================= Terminal ================= -->
+  <g filter="url(#ao-shadow)">
+    <rect x="72" y="168" width="516" height="464" rx="16" fill="#0D0E14" stroke="#ffffff" stroke-opacity="0.10"/>
+    <path d="M72 184a16 16 0 0 1 16-16h484a16 16 0 0 1 16 16v34H72z" fill="url(#ao-term-bar)"/>
+    <line x1="72" y1="218" x2="588" y2="218" stroke="#ffffff" stroke-opacity="0.08"/>
+    <circle cx="98" cy="193" r="5.5" fill="#ff5f57"/>
+    <circle cx="118" cy="193" r="5.5" fill="#febc2e"/>
+    <circle cx="138" cy="193" r="5.5" fill="#28c840"/>
+    <text x="330" y="198" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#8b8f9e">agent-orchestra</text>
+  </g>
+
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="16.5">
+    <text x="104" y="264" fill="#60a5fa">$<tspan fill="#e6e8ef" dx="10">agent-orchestra run workflow.yaml</tspan></text>
+
+    <text x="104" y="308" fill="#4b5163">steps:</text>
+    <text x="104" y="336" fill="#4b5163">  - provider:<tspan fill="#a5b4fc" dx="9">claude</tspan></text>
+    <text x="104" y="364" fill="#4b5163">  - provider:<tspan fill="#a5b4fc" dx="9">codex</tspan></text>
+    <text x="104" y="392" fill="#4b5163">  - provider:<tspan fill="#a5b4fc" dx="9">grok</tspan></text>
+
+    <text x="104" y="440" fill="#22c55e">✓<tspan fill="#7d8296" dx="12">claude</tspan><tspan fill="#4b5163" dx="10">1.2s</tspan></text>
+    <text x="104" y="468" fill="#22c55e">✓<tspan fill="#7d8296" dx="12">codex</tspan><tspan fill="#4b5163" dx="10">0.9s</tspan></text>
+    <text x="104" y="496" fill="#22c55e">✓<tspan fill="#7d8296" dx="12">grok</tspan><tspan fill="#4b5163" dx="10">1.1s</tspan></text>
+
+    <text x="104" y="544" fill="#60a5fa">→<tspan fill="#e6e8ef" dx="12">workflow completado</tspan></text>
+
+    <text x="104" y="588" fill="#60a5fa">$</text>
+    <rect x="122" y="574" width="10" height="18" fill="#60a5fa" opacity="0.9"/>
+  </g>
+
+  <!-- ================= Grafo de agentes ================= -->
+  <g transform="translate(886 400)">
+    <!-- Conexiones -->
+    <g stroke="#3b82f6" fill="none" stroke-linecap="round">
+      <g stroke-opacity="0.30" stroke-width="7" filter="url(#ao-soft)">
+        <path d="M0 0 L0 -178"/>
+        <path d="M0 0 L170 -60"/>
+        <path d="M0 0 L118 132"/>
+        <path d="M0 0 L-118 132"/>
+        <path d="M0 0 L-170 -60"/>
+      </g>
+      <g stroke-opacity="0.75" stroke-width="1.5">
+        <path d="M0 0 L0 -178"/>
+        <path d="M0 0 L170 -60"/>
+        <path d="M0 0 L118 132"/>
+        <path d="M0 0 L-118 132"/>
+        <path d="M0 0 L-170 -60"/>
+      </g>
+    </g>
+
+    <!-- Paquetes viajando por las conexiones -->
+    <g fill="#93c5fd">
+      <circle cx="0" cy="-104" r="3.6"/>
+      <circle cx="99" cy="-35" r="3.6"/>
+      <circle cx="69" cy="77" r="3.6"/>
+      <circle cx="-69" cy="77" r="3.6"/>
+      <circle cx="-99" cy="-35" r="3.6"/>
+    </g>
+
+    <!-- Núcleo -->
+    <circle r="86" fill="#3b82f6" opacity="0.16" filter="url(#ao-soft)"/>
+    <circle r="62" fill="#0D0E14" stroke="url(#ao-core)" stroke-width="2"/>
+    <text y="-6" text-anchor="middle" font-family="system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" letter-spacing="1.5" fill="#ffffff">CORE</text>
+    <text y="16" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" letter-spacing="0.6" fill="#7dd3fc">orchestrator</text>
+
+    <!-- Nodos proveedores -->
+    <g font-family="system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" font-weight="600" letter-spacing="1.4" text-anchor="middle">
+      <g transform="translate(0 -212)">
+        <rect x="-72" y="-24" width="144" height="48" rx="24" fill="#101119" stroke="#ffffff" stroke-opacity="0.14"/>
+        <text y="5" fill="#e6e8ef">CLAUDE</text>
+      </g>
+      <g transform="translate(202 -72)">
+        <rect x="-72" y="-24" width="144" height="48" rx="24" fill="#101119" stroke="#ffffff" stroke-opacity="0.14"/>
+        <text y="5" fill="#e6e8ef">CODEX</text>
+      </g>
+      <g transform="translate(140 158)">
+        <rect x="-72" y="-24" width="144" height="48" rx="24" fill="#101119" stroke="#ffffff" stroke-opacity="0.14"/>
+        <text y="5" fill="#e6e8ef">GROK</text>
+      </g>
+      <g transform="translate(-140 158)">
+        <rect x="-72" y="-24" width="144" height="48" rx="24" fill="#101119" stroke="#ffffff" stroke-opacity="0.14"/>
+        <text y="5" fill="#e6e8ef">GEMINI</text>
+      </g>
+      <g transform="translate(-202 -72)">
+        <rect x="-72" y="-24" width="144" height="48" rx="24" fill="#101119" stroke="#60a5fa" stroke-opacity="0.45" stroke-dasharray="5 5"/>
+        <text y="5" fill="#93c5fd">+ CUSTOM</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Etiqueta -->
+  <g font-family="system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+    <text x="72" y="112" font-size="15" letter-spacing="4.5" fill="#60a5fa">MULTI-PROVIDER CLI</text>
+    <text x="72" y="700" font-size="17" fill="#6b7280">Un solo workflow declarativo. Todos los agentes.</text>
+  </g>
+</svg>

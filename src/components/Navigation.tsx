@@ -7,11 +7,28 @@ const Navigation = () => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+    // Listener pasivo + throttle con rAF: el navegador no espera al handler para
+    // hacer scroll y sólo se toca el estado cuando el booleano cambia de verdad.
+    let ticking = false;
+    let lastValue = window.scrollY > 50;
+    setScrolled(lastValue);
+
+    const update = () => {
+      ticking = false;
+      const next = window.scrollY > 50;
+      if (next !== lastValue) {
+        lastValue = next;
+        setScrolled(next);
+      }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(update);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -54,8 +71,8 @@ const Navigation = () => {
       variants={navVariants}
       initial="hidden"
       animate="visible"
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? 'glass-dark' : 'bg-transparent'
+      className={`fixed top-0 w-full z-50 transition-colors duration-300 ${
+        scrolled ? 'glass-nav' : 'bg-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -73,7 +90,7 @@ const Navigation = () => {
                   custom={i}
                   variants={linkVariants}
                   whileHover="hover"
-                  className="text-gray-300 hover:text-red-500 px-3 py-2 rounded-md text-sm font-medium font-heading transition-all duration-300 relative group"
+                  className="text-gray-300 hover:text-red-500 px-3 py-2 rounded-md text-sm font-medium font-heading transition-colors duration-300 relative group"
                 >
                   {item.name}
                   <motion.span
@@ -89,7 +106,7 @@ const Navigation = () => {
             <motion.button
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-red-500 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500 transition-all duration-300"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-red-500 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500 transition-colors duration-300"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </motion.button>
@@ -105,9 +122,9 @@ const Navigation = () => {
           closed: { opacity: 0, height: 0 }
         }}
         transition={{ duration: 0.3 }}
-        className="md:hidden overflow-hidden"
+        className="md:hidden overflow-hidden glass-nav"
       >
-        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 glass-dark">
+        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
           {navItems.map((item, i) => (
             <motion.a
               key={item.name}
@@ -116,7 +133,7 @@ const Navigation = () => {
               initial={{ opacity: 0, x: -20 }}
               animate={isOpen ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
               transition={{ delay: i * 0.05 }}
-              className="text-gray-300 hover:text-red-500 block px-3 py-2 rounded-md text-base font-medium font-heading transition-all duration-300"
+              className="text-gray-300 hover:text-red-500 block px-3 py-2 rounded-md text-base font-medium font-heading transition-colors duration-300"
             >
               {item.name}
             </motion.a>
