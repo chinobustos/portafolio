@@ -17,8 +17,8 @@ const projects: Project[] = [
     title: "Nexus",
     description:
       "Plataforma integral bajo el modelo Software as a Service (SaaS) orientada a la administración centralizada de clientes, contratos y flujos de trabajo para freelancers y empresas de desarrollo.",
-    image:
-      "/dashboard.png"
+    image: "/dashboard.png",
+    repo: "https://github.com/chinobustos/Nexus"
   },
   {
     title: "SmartCore Gym",
@@ -27,7 +27,8 @@ const projects: Project[] = [
     image: "/gym.png",
     // La captura es muy panorámica (1626x893): con "cover" se recortaría el
     // formulario de login por la izquierda y las métricas por la derecha.
-    imageFit: "contain"
+    imageFit: "contain",
+    repo: "https://github.com/chinobustos/SmartCore-Gym"
   },
   {
     title: "agent-orchestra",

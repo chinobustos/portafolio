@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "montserrat",
+        "createdAt": "2026-09-01T21:50:28.689Z",
+        "reason": "Fuente preexistente del portafolio (definida en src/App.css desde antes de esta sesion); el usuario pidio explicitamente conservar el diseno tal cual y solo optimizar rendimiento"
+      }
+    ]
+  }
+}
