@@ -1,5 +1,13 @@
 import { motion } from "framer-motion";
-import { Code2, Layers, Database, Wrench } from "lucide-react";
+import {
+  Code2,
+  Database,
+  FlaskConical,
+  GitBranch,
+  PenTool,
+  Sparkles,
+  Users
+} from "lucide-react";
 
 import SplitText from "./SplitText";
 
@@ -13,32 +21,67 @@ import SplitText from "./SplitText";
  * que prometían algo y no cumplían.
  */
 
+/** Las categorías y su contenido son las que declara Ivan en su CV. */
 const GRUPOS = [
   {
     icon: Code2,
-    titulo: "Lenguajes",
-    detalle: "La base del navegador: marcado, estilos y tipado estático.",
-    items: ["HTML5", "CSS3", "JavaScript", "TypeScript"]
-  },
-  {
-    icon: Layers,
-    titulo: "Interfaz",
-    detalle: "Componentes, renderizado y estilos utilitarios.",
-    items: ["React", "Next.js", "Tailwind CSS"]
+    titulo: "Lenguajes y Frameworks",
+    items: [
+      "TypeScript",
+      "JavaScript (ES6+)",
+      "React.js",
+      "Next.js",
+      "Vue.js",
+      "HTML5",
+      "CSS3",
+      "Sass",
+      "CSS-in-JS",
+      "Tailwind CSS"
+    ]
   },
   {
     icon: Database,
-    titulo: "Datos",
-    detalle: "Base relacional y backend gestionado.",
-    items: ["PostgreSQL", "Supabase"]
+    titulo: "Backend e Integraciones",
+    items: [
+      "Node.js",
+      "REST APIs",
+      "Supabase",
+      "PostgreSQL",
+      "Mercado Pago",
+      "Stripe"
+    ]
   },
   {
-    icon: Wrench,
-    titulo: "Herramientas",
-    detalle: "Versionado, editor, diseño y despliegue.",
-    // Todas verificables: los repos están en GitHub, el portafolio y SmartCore
-    // se despliegan en Vercel, y Vite es el bundler de este proyecto y de Nexus.
-    items: ["Git", "GitHub", "Cursor", "Figma", "Vite", "Vercel"]
+    icon: FlaskConical,
+    titulo: "Testing y Calidad",
+    items: ["Jest", "React Testing Library", "Lighthouse"]
+  },
+  {
+    icon: GitBranch,
+    titulo: "Control de Versiones y Deploy",
+    items: ["Git", "GitFlow", "Vercel", "CI/CD"]
+  },
+  {
+    icon: PenTool,
+    titulo: "Diseño UX/UI",
+    items: [
+      "Figma",
+      "Wireframing",
+      "Prototipado interactivo",
+      "User flows",
+      "Design systems"
+    ]
+  },
+  {
+    icon: Sparkles,
+    titulo: "Inteligencia Artificial",
+    detalle: "Automatización de flujos de desarrollo.",
+    items: ["Claude Code", "Codex", "Groq"]
+  },
+  {
+    icon: Users,
+    titulo: "Metodología",
+    items: ["Scrum", "Desarrollo ágil"]
   }
 ];
 
@@ -59,8 +102,8 @@ const Stack = () => (
         </h2>
 
         <p className="mt-8 max-w-md text-base leading-relaxed text-zinc-400">
-          Lo que uso a diario para construir. Cada proyecto de abajo declara su
-          stack real, tomado de su propio repositorio.
+          Lo que uso a diario para construir. Cada proyecto de abajo declara el
+          stack con el que está hecho.
         </p>
       </div>
 
@@ -88,9 +131,11 @@ const Stack = () => (
                 {grupo.titulo}
               </h3>
 
-              <p className="mt-1.5 text-sm leading-relaxed text-zinc-400">
-                {grupo.detalle}
-              </p>
+              {grupo.detalle && (
+                <p className="mt-1.5 text-sm leading-relaxed text-zinc-400">
+                  {grupo.detalle}
+                </p>
+              )}
 
               <ul className="mt-4 flex flex-wrap gap-2">
                 {grupo.items.map((item) => (

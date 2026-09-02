@@ -831,3 +831,22 @@
 @media (prefers-reduced-motion: reduce) {
   .marquee { animation: none; }
 }
+
+/* El filtro gooey desenfoca 6px fijos. Sobre las letras de ~235px del
+   escritorio eso es un 2.5% de la altura y apenas redondea los bordes; sobre
+   las de ~103px de un móvil es un 6% y las funde en una mancha ilegible.
+   Como `stdDeviation` va en píxeles absolutos y no puede escalar con `vw`,
+   el efecto se aplica solo a partir de 768px. */
+.liquido {
+  filter: none;
+}
+
+@media (min-width: 768px) {
+  .liquido {
+    filter: url(#liquido);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .liquido { filter: none; }
+}

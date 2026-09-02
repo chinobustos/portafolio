@@ -95,10 +95,7 @@ const WorkIntro = () => {
           />
         </div>
 
-        <div
-          className="relative z-10 flex items-center justify-center"
-          style={{ filter: reduced ? undefined : "url(#liquido)" }}
-        >
+        <div className={`relative z-10 flex items-center justify-center ${reduced ? "" : "liquido"}`}>
           <h2 className="font-display text-[14vw] font-bold leading-[0.85] tracking-tighter text-accent-500">
             PROYECTOS
           </h2>
@@ -109,7 +106,7 @@ const WorkIntro = () => {
               <span
                 key={i}
                 aria-hidden="true"
-                className="absolute rounded-full bg-accent-500"
+                className="absolute hidden rounded-full bg-accent-500 md:block"
                 style={{
                   left: d.left,
                   top: d.top,

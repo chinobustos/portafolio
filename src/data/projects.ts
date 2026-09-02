@@ -136,5 +136,29 @@ export const projects: Project[] = [
       bottom: -8,
       depth: "front"
     }
+  },
+  {
+    slug: "pacioli",
+    title: "pacioli.ar",
+    brand: "Pacioli",
+    // Cierra la sección: en la pila, la última tarjeta es la que queda
+    // en pantalla antes de salir, y es el único trabajo profesional.
+    category: "Trabajo profesional · Contablix",
+    description:
+      "Diseño UX/UI y desarrollo frontend completo de la aplicación. Lideré el diseño integral de la interfaz —flujos de navegación, wireframes y prototipos interactivos en Figma— y desarrollé la totalidad del código frontend. Construí un marketplace de apps dentro de la plataforma, con el flujo de upgrade de suscripción free a paga integrando la pasarela de Mercado Pago.",
+    stack: [
+      "TypeScript",
+      "React",
+      "Next.js",
+      "Tailwind CSS",
+      "Mercado Pago",
+      "Figma"
+    ],
+    nav: ["Producto", "Migración", "Nosotros"],
+    // Captura del sitio en producción.
+    image: "/pacioli.jpg",
+    // El único proyecto con demo en vivo: producto real, publicado.
+    demo: "https://pacioli.ar",
+    kind: "web"
   }
 ];
