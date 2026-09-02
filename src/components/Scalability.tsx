@@ -16,8 +16,8 @@ const Scalability = () => {
     { text: 'Construye', delay: 0, className: 'text-white' },
     { text: 'tu', delay: 150, className: 'text-white' },
     { text: 'negocio', delay: 300, className: 'text-white' },
-    { text: '100%', delay: 450, className: 'text-green-400 font-medium' },
-    { text: 'escalable', delay: 600, className: 'text-green-400 font-medium' }
+    { text: '100%', delay: 450, className: 'text-accent-400 font-medium' },
+    { text: 'escalable', delay: 600, className: 'text-accent-400 font-medium' }
   ];
 
   const subline = [
@@ -40,7 +40,7 @@ const Scalability = () => {
           style={{ y: textY, willChange: 'transform' }}
           className={`relative z-10 text-center mb-12 ${isInView ? 'words-in' : ''}`}
         >
-              <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light mb-6 leading-tight">
+              <h2 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-medium mb-6 leading-tight">
                 {headline.map((word, i) => (
                   <span key={word.text}>
                     <span
@@ -116,7 +116,7 @@ const Scalability = () => {
                 <motion.polyline
                   points="50,250 150,200 250,180 350,140 450,100 550,120 650,80 750,60"
                   fill="none"
-                  stroke="#16c224"
+                  stroke="#ff5533"
                   strokeWidth="3"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -135,8 +135,8 @@ const Scalability = () => {
                       cx={x}
                       cy={yValues[i]}
                       r="6"
-                      fill="#38e084"
-                      stroke="#60fa93"
+                      fill="#ff7a5c"
+                      stroke="#ffa48d"
                       strokeWidth="2"
                       initial={{ scale: 0 }}
                       whileInView={{ scale: 1 }}
@@ -149,8 +149,8 @@ const Scalability = () => {
                 {/* Gradient definitions */}
                 <defs>
                   <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stopColor="#3bf644" stopOpacity="0.3" />
-                    <stop offset="100%" stopColor="#043a0b" stopOpacity="0.01" />
+                    <stop offset="0%" stopColor="#ff5533" stopOpacity="0.3" />
+                    <stop offset="100%" stopColor="#a02a0c" stopOpacity="0.01" />
                   </linearGradient>
                 </defs>
               </svg>

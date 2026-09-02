@@ -81,8 +81,8 @@ const Contact = () => {
     >
       {/* Fondo futurista */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl top-20 left-10 animate-pulse"></div>
-        <div className="absolute w-96 h-96 bg-purple-500/10 rounded-full blur-3xl bottom-20 right-10 animate-pulse"></div>
+        <div className="absolute w-96 h-96 bg-accent-500/10 rounded-full blur-3xl top-20 left-10 animate-pulse"></div>
+        <div className="absolute w-96 h-96 bg-accent-700/10 rounded-full blur-3xl bottom-20 right-10 animate-pulse"></div>
       </div>
 
       <div className="max-w-6xl mx-auto px-6">
@@ -95,7 +95,7 @@ const Contact = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-24"
         >
-          <h2 className="text-4xl md:text-6xl font-semibold tracking-tight text-white mb-6">
+          <h2 className="font-display text-3xl md:text-5xl font-semibold tracking-tight text-white mb-6">
             Trabajemos juntos
           </h2>
 
@@ -147,9 +147,6 @@ const Contact = () => {
             transition={{ duration: 0.8 }}
             className="glass-dark p-10 relative rounded-2xl overflow-hidden"
           >
-            {/* Glow animado */}
-            <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-cyan-500/20 via-purple-500/20 to-pink-500/20 blur-2xl opacity-40 animate-pulse pointer-events-none"></div>
-
             <h3 className="text-white text-xl mb-10 tracking-wide relative">
               Envíame un mensaje
             </h3>
@@ -164,7 +161,7 @@ const Contact = () => {
                 onChange={handleChange}
                 required
                 placeholder="Nombre completo"
-                className="w-full bg-transparent border-b border-white/20 pb-3 text-white placeholder-gray-500 focus:outline-none focus:border-transparent focus:bg-gradient-to-r focus:from-cyan-400 focus:to-purple-500 focus:bg-[length:100%_2px] focus:bg-no-repeat focus:bg-bottom transition-all duration-500"
+                className="w-full bg-transparent border-b border-white/20 pb-3 text-white placeholder-gray-500 focus:outline-none focus:border-transparent focus:bg-gradient-to-r focus:from-accent-400 focus:to-accent-600 focus:bg-[length:100%_2px] focus:bg-no-repeat focus:bg-bottom transition-all duration-500"
               />
 
               {/* Email */}
@@ -175,7 +172,7 @@ const Contact = () => {
                 onChange={handleChange}
                 required
                 placeholder="Correo electrónico"
-                className="w-full bg-transparent border-b border-white/20 pb-3 text-white placeholder-gray-500 focus:outline-none focus:border-transparent focus:bg-gradient-to-r focus:from-cyan-400 focus:to-purple-500 focus:bg-[length:100%_2px] focus:bg-no-repeat focus:bg-bottom transition-all duration-500"
+                className="w-full bg-transparent border-b border-white/20 pb-3 text-white placeholder-gray-500 focus:outline-none focus:border-transparent focus:bg-gradient-to-r focus:from-accent-400 focus:to-accent-600 focus:bg-[length:100%_2px] focus:bg-no-repeat focus:bg-bottom transition-all duration-500"
               />
 
               {/* Mensaje */}
@@ -186,7 +183,7 @@ const Contact = () => {
                 required
                 rows={4}
                 placeholder="Mensaje"
-                className="w-full bg-transparent border-b border-white/20 pb-3 text-white placeholder-gray-500 resize-none focus:outline-none focus:border-transparent focus:bg-gradient-to-r focus:from-cyan-400 focus:to-purple-500 focus:bg-[length:100%_2px] focus:bg-no-repeat focus:bg-bottom transition-all duration-500"
+                className="w-full bg-transparent border-b border-white/20 pb-3 text-white placeholder-gray-500 resize-none focus:outline-none focus:border-transparent focus:bg-gradient-to-r focus:from-accent-400 focus:to-accent-600 focus:bg-[length:100%_2px] focus:bg-no-repeat focus:bg-bottom transition-all duration-500"
               />
 
               {status && (

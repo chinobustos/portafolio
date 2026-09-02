@@ -39,7 +39,7 @@ const ProcessTimeline = () => {
       <div className="max-w-6xl mx-auto px-6">
 
         <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-6xl font-semibold text-white mb-6">
+          <h2 className="font-display text-3xl md:text-5xl font-semibold text-white mb-6">
             Proceso de Desarrollo
           </h2>
           <p className="text-zinc-400 max-w-2xl mx-auto">
@@ -50,7 +50,7 @@ const ProcessTimeline = () => {
         <div className="relative">
 
           {/* Línea vertical */}
-          <div className="absolute left-4 md:left-1/2 top-0 h-full w-[3px] bg-gradient-to-b from-cyan-400 via-purple-500 to-transparent opacity-40" />
+          <div className="absolute left-4 md:left-1/2 top-0 h-full w-[3px] bg-gradient-to-b from-accent-400 via-accent-600 to-transparent opacity-40" />
 
           <div className="space-y-16">
             {processSteps.map((item, index) => {
@@ -75,7 +75,7 @@ const ProcessTimeline = () => {
                       ${isLeft ? "md:mr-auto" : "md:ml-auto"}
                     `}
                   >
-                    <span className="text-sm text-cyan-400 tracking-widest">
+                    <span className="text-sm text-accent-400 tracking-widest">
                       STEP {item.step}
                     </span>
 
@@ -89,7 +89,7 @@ const ProcessTimeline = () => {
                   </div>
 
                   {/* Punto */}
-                  <div className="absolute left-4 md:left-1/2 md:-translate-x-1/2 w-6 h-6 rounded-full bg-gradient-to-br from-cyan-400 to-purple-500 border-4 border-black shadow-lg" />
+                  <div className="absolute left-4 md:left-1/2 md:-translate-x-1/2 w-6 h-6 rounded-full bg-gradient-to-br from-accent-400 to-accent-600 border-4 border-black shadow-lg" />
                 </motion.div>
               );
             })}

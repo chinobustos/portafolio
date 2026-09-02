@@ -35,8 +35,8 @@ const Navigation = () => {
   const navItems = [
     { name: 'Inicio', href: '#hero' },
     { name: 'Sobre Mí', href: '#about' },
+    { name: 'Tecnologías', href: '#tecnologias' },
     { name: 'Proyectos', href: '#projects' },
-    { name: 'Servicios', href: '#services' },
     { name: 'Contacto', href: '#contact' },
   ];
 
@@ -78,7 +78,7 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
-            <span className="text-3xl font-bold gradient-text">IB</span>
+            <span className="font-display text-3xl font-bold gradient-text">IB</span>
           </div>
           
           <div className="hidden md:block">
@@ -90,11 +90,11 @@ const Navigation = () => {
                   custom={i}
                   variants={linkVariants}
                   whileHover="hover"
-                  className="text-gray-300 hover:text-red-500 px-3 py-2 rounded-md text-sm font-medium font-heading transition-colors duration-300 relative group"
+                  className="text-gray-300 hover:text-accent-500 px-3 py-2 rounded-md text-sm font-medium font-heading transition-colors duration-300 relative group"
                 >
                   {item.name}
                   <motion.span
-                    className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 group-hover:w-full"
+                    className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent-500 group-hover:w-full"
                     transition={{ duration: 0.3 }}
                   />
                 </motion.a>
@@ -106,7 +106,7 @@ const Navigation = () => {
             <motion.button
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-red-500 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500 transition-colors duration-300"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-accent-500 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-accent-500 transition-colors duration-300"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </motion.button>
@@ -133,7 +133,7 @@ const Navigation = () => {
               initial={{ opacity: 0, x: -20 }}
               animate={isOpen ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
               transition={{ delay: i * 0.05 }}
-              className="text-gray-300 hover:text-red-500 block px-3 py-2 rounded-md text-base font-medium font-heading transition-colors duration-300"
+              className="text-gray-300 hover:text-accent-500 block px-3 py-2 rounded-md text-base font-medium font-heading transition-colors duration-300"
             >
               {item.name}
             </motion.a>

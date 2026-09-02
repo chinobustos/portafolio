@@ -18,7 +18,7 @@
 	z-index: -10;
 	pointer-events: none;
 	overflow: hidden;
-	background-color: #0f172a;
+	background-color: #0a0a0f;
 	contain: strict;
 }
 
@@ -29,7 +29,7 @@
 	left: 0;
 	width: 200%;
 	height: 200%;
-	background: linear-gradient(120deg, #0f172a, #0b1220 25%, #1f0f3a 50%, #0b1220 75%, #0f172a);
+	background: linear-gradient(120deg, #0a0a0f, #0e0e12 28%, #131318 50%, #0e0e12 72%, #0a0a0f);
 	transform: translate3d(0, 0, 0);
 	will-change: transform;
 	animation: bg-pan var(--bg-anim-duration) ease-in-out infinite;
@@ -110,4 +110,102 @@
 .word-animate:hover {
 	transform: translateY(-2px);
 	text-shadow: 0 0 20px rgba(203, 213, 225, 0.5);
+}
+
+/* ==========================================================================
+   Sistema de foco y superficies del navegador.
+
+   Antes las unicas reglas de :focus del sitio eran las de los inputs del
+   formulario de contacto; todo lo demas caia en el outline por defecto del
+   navegador, igual que el color de seleccion, el cursor de texto y la barra
+   de scroll. Estas son las partes que uno no dibuja pero que igual comunican
+   si la pagina fue disenada o ensamblada.
+   ========================================================================== */
+
+:root {
+	/* #ff5533 sobre #0a0a0f da 6.21:1, muy por encima del 3:1 que WCAG 2.2 pide
+	   para un indicador de foco. */
+	--focus: #ff5533;
+}
+
+/* `:focus-visible` y no `:focus`: el anillo aparece navegando con teclado,
+   no al hacer click con el mouse. */
+:where(a, button, input, textarea, select, summary, [tabindex]:not([tabindex="-1"])):focus-visible {
+	outline: 2px solid var(--focus);
+	outline-offset: 3px;
+}
+
+:where(a, button, input, textarea, select, summary):focus:not(:focus-visible) {
+	outline: none;
+}
+
+/* Enlace para saltar la navegacion. Vive fuera de pantalla hasta que recibe
+   foco, que es el primer Tab de la pagina. */
+.skip-link {
+	position: fixed;
+	top: -6rem;
+	left: 1rem;
+	z-index: 100;
+	padding: 0.75rem 1.25rem;
+	border-radius: 0.5rem;
+	background: var(--focus);
+	color: #fff;
+	font-weight: 600;
+	font-size: 0.9rem;
+	text-decoration: none;
+	transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+	top: 1rem;
+}
+
+::selection {
+	background: rgba(255, 85, 51, 0.3);
+	color: #fff;
+}
+
+input,
+textarea {
+	caret-color: var(--focus);
+}
+
+/* Barra de scroll: Firefox */
+html {
+	scrollbar-color: #2f2f39 #0a0a0f;
+	scrollbar-width: thin;
+}
+
+/* Barra de scroll: Chrome, Edge, Safari */
+::-webkit-scrollbar {
+	width: 10px;
+	height: 10px;
+}
+
+::-webkit-scrollbar-track {
+	background: #0a0a0f;
+}
+
+::-webkit-scrollbar-thumb {
+	border: 2px solid #0a0a0f;
+	border-radius: 999px;
+	background: #2f2f39;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #43434f;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.skip-link {
+		transition: none;
+	}
+}
+
+/* Clash Display trae un espacio de palabra muy angosto: 7.4px contra los 44.6px
+   de una M a 48px, o sea 0.17em, cuando lo habitual ronda 0.28em. Sumado al
+   tracking negativo de los titulares, las palabras terminan pegadas. Se
+   compensa con word-spacing en todo lo que use la voz de display. */
+.font-display {
+	word-spacing: 0.12em;
 }

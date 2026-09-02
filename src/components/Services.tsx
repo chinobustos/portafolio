@@ -88,8 +88,8 @@ const ProgressRing = ({
 
       <defs>
         <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#22d3ee" />
-          <stop offset="100%" stopColor="#a855f7" />
+          <stop offset="0%" stopColor="#ff7a5c" />
+          <stop offset="100%" stopColor="#c9350f" />
         </linearGradient>
       </defs>
     </svg>
@@ -113,7 +113,7 @@ const Services = () => {
       <div className="relative max-w-7xl mx-auto px-6">
 
         <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-6xl font-semibold tracking-tight text-white mb-6">
+          <h2 className="font-display text-3xl md:text-5xl font-semibold tracking-tight text-white mb-6">
             Mis Servicios
           </h2>
           <p className="text-zinc-400 max-w-2xl mx-auto text-lg">

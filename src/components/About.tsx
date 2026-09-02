@@ -1,130 +1,128 @@
 import { motion } from "framer-motion";
-import { Code, Palette, Globe, Download } from "lucide-react";
+import { Download } from "lucide-react";
 import profileImg from "../assets/profile.png";
+import SplitText from "./SplitText";
 
-const About = () => {
-  const technologies = [
-    { name: "HTML5", icon: Code, color: "text-red-400" },
-    { name: "Next.js", icon: Code, color: "text-red-500" },
-    { name: "JavaScript", icon: Code, color: "text-red-600" },
-    { name: "TypeScript", icon: Code, color: "text-red-500" },
-    { name: "React", icon: Code, color: "text-red-400" },
-    { name: "PostgreSQL", icon: Globe, color: "text-red-700" },
-    { name: "Supabase", icon: Globe, color: "text-red-600" },
-    { name: "Tailwind CSS", icon: Palette, color: "text-red-600" },
-    { name: "CSS3", icon: Palette, color: "text-red-500" },
-    { name: "Figma", icon: Palette, color: "text-red-500" },
-    { name: "Git", icon: Globe, color: "text-red-600" },
-  ];
+/*
+ * Reversión editorial: retrato enmarcado a la izquierda y todo el discurso
+ * alineado a la izquierda en la columna derecha.
+ *
+ * El texto es el que ya tenías, solo repartido en dos niveles: la frase corta
+ * pasa a titular con palabras acentuadas, y el resto queda como cuerpo. No
+ * inventé copy nuevo.
+ */
 
-  return (
-    <section id="about" className="min-h-screen py-20 bg-black">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+/** Solo datos verificables en el propio sitio. */
+const FICHA = [
+  { label: "Ubicación", value: "Mendoza, Argentina" },
+  { label: "Enfoque", value: "Frontend & UX/UI" },
+  { label: "Stack", value: "React · TypeScript" }
+];
 
-        {/* Header */}
+const About = () => (
+  <section id="about" className="min-h-screen py-24 bg-black">
+    <div className="mx-auto max-w-7xl px-6 lg:px-8">
+
+      {/* Rótulo de sección con su regla, como en la referencia.
+          El título entra letra por letra desde la línea de base, el mismo
+          gesto que el titular del hero, en vez del desplazamiento en bloque
+          que usan las otras secciones. */}
+      <div className="mb-16 text-center">
+        <h2 className="font-display text-2xl font-semibold tracking-[0.2em] text-white md:text-3xl">
+          <SplitText text="SOBRE MÍ" inView stagger={0.055} duration={0.7} />
+        </h2>
+
+        {/* La regla se dibuja desde el centro, después del título. */}
+        <motion.span
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: false, amount: 0.4 }}
+          transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          className="mx-auto mt-5 block h-px w-full max-w-md origin-center bg-gradient-to-r from-transparent via-accent-500 to-transparent"
+        />
+      </div>
+
+      <div className="grid items-start gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.6fr)] lg:gap-20">
+
+        {/* IZQUIERDA — retrato enmarcado */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.1 }}
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: false, amount: 0.2 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="relative overflow-hidden"
         >
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 gradient-text">
-            SOBRE MÍ
-          </h2>
+          {/* El nombre fantasma detrás del retrato, como en la referencia */}
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute left-4 top-3 font-display text-2xl font-bold uppercase tracking-tight text-white/[0.18] md:text-3xl"
+          >
+            Ivan Bustos
+          </span>
 
-          <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto mb-8">
-            Apasionado por crear experiencias digitales. Especializado en el desarrollo moderno
-            con enfoque en la experiencia del usuario.
+          <img
+            src={profileImg}
+            alt="Ivan Bustos"
+            width={1200}
+            height={810}
+            loading="lazy"
+            decoding="async"
+            className="w-full object-contain"
+          />
+        </motion.div>
+
+        {/* DERECHA — discurso */}
+        <motion.div
+          initial={{ opacity: 0, x: 40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: false, amount: 0.2 }}
+          transition={{ duration: 0.8, delay: 0.15 }}
+        >
+          <p className="mb-6 flex items-center gap-4 text-[0.7rem] uppercase tracking-[0.28em] text-zinc-500">
+            <span className="h-px w-10 bg-accent-500" />
+            ¿Quién soy?
           </p>
+
+          <h3 className="font-display text-3xl font-semibold uppercase leading-[1.08] tracking-tight text-white sm:text-4xl md:text-5xl">
+            Apasionado por crear{" "}
+            <span className="text-accent-500">experiencias digitales</span>
+          </h3>
+
+          <p className="mt-8 max-w-2xl text-base leading-relaxed text-zinc-400 md:text-lg">
+            Especializado en el desarrollo moderno con enfoque en la experiencia
+            del usuario.
+          </p>
+
+          {/* Ficha de datos */}
+          <dl className="mt-12 grid grid-cols-1 gap-x-10 gap-y-7 border-t border-white/10 pt-10 sm:grid-cols-3">
+            {FICHA.map((item) => (
+              <div key={item.label}>
+                <dt className="mb-2 text-[0.65rem] uppercase tracking-[0.2em] text-accent-500">
+                  {item.label}
+                </dt>
+                <dd className="text-sm uppercase tracking-wide text-white">
+                  {item.value}
+                </dd>
+              </div>
+            ))}
+          </dl>
 
           <motion.a
             href="/CV_Ivan_Bustos.pdf"
             download="CV_Ivan_Bustos.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-red-600 to-red-800 text-white rounded-lg font-semibold hover:from-red-700 hover:to-red-900 transition-all duration-300 cursor-pointer"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            className="mt-12 inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-accent-600 to-accent-700 px-6 py-3 font-semibold text-white transition-colors duration-300 hover:from-accent-700 hover:to-accent-800"
           >
             <Download size={20} />
             DESCARGAR CV
           </motion.a>
         </motion.div>
-
-        {/* Layout Responsive */}
-        <div className="flex flex-col lg:flex-row items-center gap-16">
-
-          {/* IZQUIERDA — IMAGEN GRANDE EN MÓVIL */}
-          <motion.div
-            initial={{ opacity: 0, x: -60 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false, amount: 0.1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-full lg:w-1/2 flex justify-center"
-          >
-            <img
-              src={profileImg}
-              alt="Ivan Bustos"
-              width={1200}
-              height={810}
-              loading="lazy"
-              decoding="async"
-              className="
-                w-full
-                max-w-[380px]
-                sm:max-w-[420px]
-                md:w-80
-                lg:w-[500px]
-                object-contain
-              "
-            />
-          </motion.div>
-
-          {/* DERECHA — TECNOLOGÍAS */}
-          <motion.div
-            initial={{ opacity: 0, x: 60 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false, amount: 0.1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="w-full lg:w-1/2"
-          >
-            <h3 className="text-2xl sm:text-3xl font-light mb-8 text-red-500 text-center lg:text-left">
-              TECNOLOGÍAS QUE DOMINO
-            </h3>
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-              {technologies.map((tech, index) => (
-                <motion.div
-                  key={tech.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: false, amount: 0.15 }}
-                  transition={{
-                    duration: 0.6,
-                    delay: 0.6 + index * 0.05,
-                  }}
-                  whileHover={{
-                    y: -6,
-                    scale: 1.05,
-                  }}
-                  className="glass-dark p-4 rounded-lg hover:border-red-600/50 transition-all duration-300 text-center"
-                >
-                  <tech.icon
-                    className={`w-7 h-7 mx-auto mb-2 ${tech.color}`}
-                  />
-                  <span className="text-sm text-gray-300">
-                    {tech.name}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-        </div>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default About;

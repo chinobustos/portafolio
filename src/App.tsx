@@ -1,22 +1,17 @@
 // React import not required with new JSX transform
-import { lazy, Suspense } from 'react';
 import Hero from './components/Hero';
 import About from './components/About';
-import Scalability from './components/Scalability';
 import Projects from './components/Projects';
-import Services from './components/Services';
+import Stack from './components/Stack';
 import Contact from './components/Contact';
 import Navigation from './components/Navigation';
-import Timeline from './components/Timeline';
 import  Footer  from './components/Footer';
 
 import './App.css';
 import './index.css';
+import './styles/devices.css';
 import ParticlesBg from './components/ParticlesBg';
-
-// El bloque 3D (Spline) vive muy por debajo del pliegue: se carga en un chunk
-// aparte para no retrasar el primer render ni el bundle inicial.
-const BrandStatement = lazy(() => import('./components/BrandStatement'));
+import HeroIntro from './components/HeroIntro';
 
 function App() {
   return (
@@ -25,19 +20,29 @@ function App() {
     // tenía altura fija y por tanto nunca fue el scroller). El scroll suave
     // sigue activo vía `html { scroll-behavior: smooth }` en App.css.
     <div className="min-h-screen text-white">
+      {/* Cortina de entrada. Va primero para quedar por encima de todo. */}
+      <HeroIntro />
+
+      {/* Primer elemento enfocable de la página: permite saltarse los cinco
+          enlaces del nav en cada visita con teclado o lector de pantalla. */}
+      <a href="#contenido" className="skip-link">
+        Saltar al contenido
+      </a>
+
       <ParticlesBg />
       <div className="animated-bg" aria-hidden="true" />
       <Navigation />
-      <Hero />
-      <About />
-      <Scalability />
-      <Suspense fallback={<div className="min-h-screen bg-black" />}>
-        <BrandStatement />
-      </Suspense>
-      <Projects />
-      <Services />
-      <Timeline />
-      <Contact />
+
+      {/* La página no tenía ningún landmark: era un div suelto. `main` le da a
+          los lectores de pantalla un punto de entrada al contenido. */}
+      <main id="contenido">
+        <Hero />
+        <About />
+        <Stack />
+        <Projects />
+        <Contact />
+      </main>
+
       <Footer/>
 
     </div>

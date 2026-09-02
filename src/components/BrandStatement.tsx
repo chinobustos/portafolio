@@ -8,7 +8,7 @@ const BrandStatement = () => {
         <ContainerScroll
           titleComponent={
             <>
-              <h2 className="text-4xl md:text-6xl lg:text-7xl font-semibold tracking-tight text-white leading-[1.1] mb-8">
+              <h2 className="font-display text-4xl md:text-6xl lg:text-7xl font-semibold tracking-tight text-white leading-[1.1] mb-8">
                 Creo plataformas web <br />
                 <span className="text-white/90">
                   inmersivas y ultrafuncionales
